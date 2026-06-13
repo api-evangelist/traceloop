@@ -1,0 +1,68 @@
+specificationVersion: "0.1"
+id: traceloop-plans-pricing
+name: Traceloop Plans and Pricing
+description: Pricing tiers for Traceloop LLM observability platform, covering spans per month, seats, data retention, and enterprise features.
+url: https://www.traceloop.com/pricing
+plans:
+  - name: Free Forever
+    description: >-
+      Permanent free tier for individuals and small teams exploring LLM observability.
+      Includes core monitoring, evaluation, CI/CD integration, and prompt management
+      with limited spans and short data retention.
+    price: 0
+    currency: USD
+    per: month
+    limits:
+      - name: Spans per Month
+        value: 50000
+        unit: spans
+      - name: Seats
+        value: 5
+        unit: seats
+      - name: Data Retention
+        value: 24
+        unit: hours
+    features:
+      - Monitoring Dashboard
+      - Evaluation Dashboard
+      - CI/CD Integration
+      - Prompt Management
+    trial: false
+    custom: false
+
+  - name: Enterprise
+    description: >-
+      Custom enterprise plan for organizations with high-volume LLM workloads requiring
+      unlimited seats, custom data retention, SOC 2 compliance, on-premises deployment,
+      and dedicated Slack support. Available via AWS, GCP, and Azure Marketplaces.
+    price: null
+    currency: USD
+    per: month
+    limits:
+      - name: Spans per Month
+        value: null
+        unit: spans
+        description: Unlimited (custom volume)
+      - name: Seats
+        value: null
+        unit: seats
+        description: Unlimited
+      - name: Data Retention
+        value: null
+        unit: hours
+        description: Custom retention period
+    features:
+      - Monitoring Dashboard
+      - Evaluation Dashboard
+      - CI/CD Integration
+      - Prompt Management
+      - SOC 2 Compliance
+      - On-Premises Deployment Option
+      - Dedicated Slack Support
+      - AWS Marketplace
+      - GCP Marketplace
+      - Azure Marketplace
+    trial: true
+    trialDays: 14
+    custom: true
+    contact: https://www.traceloop.com/pricing

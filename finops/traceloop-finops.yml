@@ -1,0 +1,110 @@
+specificationVersion: "1.0"
+id: traceloop-finops
+name: Traceloop FinOps
+description: >-
+  FinOps Framework FOCUS-aligned cost management reference for Traceloop LLM
+  observability platform. Covers billing dimensions, cost allocation by LLM
+  provider and model, token-level cost tracking, and organizational spend controls.
+url: https://www.traceloop.com/pricing
+framework: FinOps Framework 1.0
+focusVersion: "1.0"
+
+billing:
+  model: span-based
+  currency: USD
+  cycle: monthly
+  marketplaces:
+    - name: AWS Marketplace
+      url: https://aws.amazon.com/marketplace
+    - name: GCP Marketplace
+      url: https://console.cloud.google.com/marketplace
+    - name: Azure Marketplace
+      url: https://azuremarketplace.microsoft.com/
+
+costDimensions:
+  - name: Span Volume
+    description: >-
+      Primary billing unit. Each OpenTelemetry span ingested by Traceloop counts
+      against the monthly span quota. A span typically corresponds to one LLM call
+      or a segment of an AI pipeline execution.
+    unit: spans
+    granularity: monthly
+    tiers:
+      - range: "0–50,000"
+        price: 0
+        currency: USD
+        plan: Free Forever
+      - range: ">50,000"
+        price: null
+        currency: USD
+        plan: Enterprise
+        custom: true
+
+  - name: Data Retention
+    description: >-
+      Storage cost proxy. Free tier retains data 24 hours. Enterprise plans
+      support up to 720 hours (30 days) of configurable retention per environment,
+      included in the enterprise contract price.
+    unit: hours
+    granularity: per-environment
+
+costAllocation:
+  - dimension: LLM Provider
+    description: >-
+      Traceloop captures token usage and cost metadata per LLM provider
+      (OpenAI, Anthropic, Gemini, Bedrock, Ollama, etc.) via OpenTelemetry
+      semantic conventions, enabling cost attribution by provider.
+    tags:
+      - gen_ai.system
+      - gen_ai.request.model
+
+  - dimension: User / Session
+    description: >-
+      Cost-per-user tracking is supported via span attributes, enabling
+      organizations to allocate LLM spend to individual users or sessions
+      for chargeback or showback reporting.
+    tags:
+      - user.id
+      - session.id
+
+  - dimension: Environment
+    description: >-
+      Multiple environments (e.g., production, staging, development) can be
+      created per organization. Span quotas and retention are configurable
+      per environment to isolate cost centers.
+    tags:
+      - environment
+
+optimization:
+  - name: Span Sampling
+    description: >-
+      Use OpenTelemetry sampling to reduce the volume of spans ingested,
+      focusing quota on high-value production traces rather than development
+      or low-priority pipeline segments.
+
+  - name: Retention Tuning
+    description: >-
+      Configure shorter retention windows for non-production environments
+      to reduce storage costs under enterprise contracts.
+
+  - name: Evaluator Scope
+    description: >-
+      Run expensive LLM-as-a-judge evaluators selectively via auto-monitor
+      setup rules targeting specific span attributes to minimize evaluation
+      compute overhead.
+
+  - name: Cloud Marketplace Credits
+    description: >-
+      Enterprise plans can be purchased via AWS, GCP, or Azure Marketplaces,
+      allowing organizations to apply existing committed cloud spend credits
+      toward Traceloop costs.
+
+observability:
+  - metric: token_usage_total
+    description: Total tokens consumed per model, available via the /v2/metrics endpoint.
+  - metric: cost_per_user
+    description: Estimated LLM spend per end-user session, derived from span cost attributes.
+  - metric: evaluation_pass_rate
+    description: Fraction of spans passing quality evaluators, used to measure LLM reliability ROI.
+  - metric: spans_ingested_total
+    description: Running count of spans ingested this billing period vs. plan quota.

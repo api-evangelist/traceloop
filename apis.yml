@@ -1,0 +1,75 @@
+aid: traceloop
+name: Traceloop
+description: >-
+  Traceloop is an LLM reliability and observability platform built on OpenTelemetry
+  that provides full visibility into every prompt, response, and failure across AI
+  pipelines. The platform enables teams to monitor LLM quality in production, detect
+  model drift and hallucinations, run automated evaluations via LLM-as-a-judge, and
+  enforce quality gates in CI/CD workflows. Traceloop exposes a REST API for managing
+  auto-monitor setups, running 40+ built-in evaluators (safety, faithfulness, PII,
+  toxicity, structural validation), querying metrics and span warehouse data, and
+  administering organizations and environments. The open-source OpenLLMetry SDK
+  integrates in one line of code across Python, TypeScript, Go, and Ruby with support
+  for 20+ LLM providers and major orchestration frameworks.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/traceloop/refs/heads/main/apis.yml
+created: 2026-06-13
+modified: 2026-06-13
+specificationVersion: "0.19"
+tags:
+  - LLM Observability
+  - OpenTelemetry
+  - AI Monitoring
+  - Tracing
+  - Evaluation
+  - LLM Gateway
+  - Prompt Management
+  - Machine Learning
+apis:
+  - name: Traceloop REST API
+    description: >-
+      REST API for managing LLM observability infrastructure including auto-monitor
+      setups, evaluators, metrics, organizations, tracing privacy controls, cost
+      reporting, and span warehouse queries. Authenticated with Bearer tokens
+      generated from the Traceloop dashboard.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.traceloop.com/docs/api-reference/introduction
+    baseURL: https://api.traceloop.com
+    tags:
+      - LLM Observability
+      - Tracing
+      - Evaluators
+      - Metrics
+      - Monitoring
+    properties:
+      - type: Documentation
+        url: https://www.traceloop.com/docs/api-reference/introduction
+      - type: OpenAPI
+        url: https://www.traceloop.com/docs/openapi.json
+common:
+  - type: Website
+    url: https://www.traceloop.com/
+  - type: Documentation
+    url: https://docs.traceloop.com/
+  - type: GitHubOrg
+    url: https://github.com/traceloop
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/traceloop
+  - type: Blog
+    url: https://www.traceloop.com/blog
+  - type: Pricing
+    url: https://www.traceloop.com/pricing
+  - type: StatusPage
+    url: https://status.traceloop.com/
+  - type: X
+    url: https://twitter.com/traceloopdev
+  - type: Plans
+    url: plans/traceloop-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/traceloop-rate-limits.yml
+  - type: FinOps
+    url: finops/traceloop-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

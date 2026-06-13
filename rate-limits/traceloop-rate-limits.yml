@@ -1,0 +1,56 @@
+specificationVersion: "0.1"
+id: traceloop-rate-limits
+name: Traceloop API Rate Limits
+description: >-
+  Rate limits and usage quotas for the Traceloop REST API and observability
+  platform. Span ingestion limits are enforced at the plan level. Specific
+  per-endpoint HTTP rate limits are not publicly documented; contact Traceloop
+  for enterprise quota details.
+url: https://www.traceloop.com/docs/api-reference/introduction
+limits:
+  - name: Free Tier Span Ingestion
+    description: Maximum number of OpenTelemetry spans that can be ingested per month on the Free Forever plan.
+    value: 50000
+    unit: spans
+    per: month
+    plan: Free Forever
+    scope: account
+
+  - name: Enterprise Span Ingestion
+    description: Custom span ingestion volume negotiated per enterprise contract; no hard cap on the standard enterprise plan.
+    value: null
+    unit: spans
+    per: month
+    plan: Enterprise
+    scope: account
+    custom: true
+
+  - name: Data Retention Window (Free)
+    description: Trace and span data is retained for 24 hours on the Free Forever tier before automatic deletion.
+    value: 24
+    unit: hours
+    per: null
+    plan: Free Forever
+    scope: account
+
+  - name: Data Retention Window (Enterprise)
+    description: Custom data retention window, configurable from 1 to 720 hours (30 days) per environment via the Organizations API.
+    value: 720
+    unit: hours
+    per: null
+    plan: Enterprise
+    scope: environment
+    custom: true
+
+  - name: Seats (Free)
+    description: Maximum number of user seats on the Free Forever plan.
+    value: 5
+    unit: seats
+    per: null
+    plan: Free Forever
+    scope: organization
+
+notes:
+  - Traceloop does not publicly publish per-endpoint HTTP rate limit headers or request-per-second caps.
+  - Bearer token authentication is required for all API calls; the same key used for trace ingestion can query data via the REST API.
+  - For enterprise rate limit SLAs, contact the Traceloop sales team at the pricing page.
