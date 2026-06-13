@@ -1,0 +1,173 @@
+vocabulary:
+  title: Traceloop API Vocabulary
+  description: >-
+    Canonical terms and definitions used across the Traceloop LLM observability
+    platform and REST API.
+  version: 1.0.0
+  source: https://www.traceloop.com/docs/api-reference/introduction
+  terms:
+    - term: Auto Monitor Setup
+      definition: >-
+        A configured rule that automatically applies a set of evaluators to LLM
+        spans matching a selector (e.g., project, environment). Enables continuous
+        quality monitoring without manual triggering.
+      properties:
+        - external_id
+        - selector
+        - evaluators
+        - status
+
+    - term: Evaluator
+      definition: >-
+        A scoring function that assesses a specific quality dimension of an LLM
+        interaction. Evaluators accept structured input (prompts, completions,
+        context, ground truth) and return a numeric score, pass/fail flag, and
+        reasoning. Traceloop provides 40+ built-in evaluators plus custom evaluator
+        support.
+      categories:
+        - LLM-as-a-Judge
+        - Agent
+        - Safety
+        - Technical Validation
+        - Utility Metrics
+
+    - term: Span
+      definition: >-
+        An OpenTelemetry trace span representing a single LLM call or pipeline step.
+        Spans capture prompts, completions, model metadata, latency, and token usage.
+        Traceloop indexes spans for search and evaluation.
+
+    - term: Span Warehouse
+      definition: >-
+        Traceloop's queryable store of historical LLM spans. Supports filtering by
+        project, environment, time range, model, and custom attributes for analysis
+        and debugging.
+
+    - term: Selector
+      definition: >-
+        A filter expression used in auto monitor setups to target which spans or
+        traces should be evaluated. Selectors can match by project ID, environment,
+        model, tags, or other span attributes.
+
+    - term: Faithfulness
+      definition: >-
+        An LLM-as-a-judge evaluator that checks whether a model completion
+        contains only information supported by the provided context. A faithfulness
+        score of 1.0 means no hallucinated facts; 0.0 means the completion
+        contradicts or fabricates content.
+
+    - term: Answer Correctness
+      definition: >-
+        An evaluator that measures factual accuracy by comparing a model's answer
+        against a ground truth reference. Uses semantic comparison to tolerate
+        paraphrase while penalizing factual errors.
+
+    - term: Answer Relevancy
+      definition: >-
+        An evaluator that checks whether the model's answer addresses the user's
+        question. Detects off-topic, tangential, or evasive responses.
+
+    - term: Answer Completeness
+      definition: >-
+        An evaluator that measures whether the model's answer includes all
+        necessary information to fully address the question given the available
+        context.
+
+    - term: Context Relevance
+      definition: >-
+        An evaluator that checks whether retrieved context documents contain
+        sufficient information to answer the query. Used in RAG pipeline quality
+        assessment.
+
+    - term: Faithfulness
+      definition: >-
+        Evaluator measuring whether the model's response is grounded in and
+        consistent with the provided context, penalizing hallucination.
+
+    - term: PII Detector
+      definition: >-
+        A safety evaluator that identifies personally identifiable information
+        (names, emails, phone numbers, SSNs, addresses, etc.) in LLM input or
+        output text. Returns detected PII categories and a pass/fail result.
+
+    - term: Toxicity Detector
+      definition: >-
+        A safety evaluator that identifies harmful, hateful, threatening, or
+        abusive language in LLM output. Returns a toxicity score and pass/fail.
+
+    - term: Prompt Injection
+      definition: >-
+        A security evaluator that detects attempts to manipulate an LLM through
+        adversarial instructions embedded in user input, overriding system prompts
+        or safety measures.
+
+    - term: Secrets Detector
+      definition: >-
+        A security evaluator that identifies API keys, passwords, tokens, private
+        keys, and other credentials that may have been leaked into LLM input
+        or output.
+
+    - term: Agent Efficiency
+      definition: >-
+        An agent-specific evaluator that detects redundant tool calls, unnecessary
+        follow-up actions, or inefficient reasoning paths in agentic LLM workflows.
+
+    - term: Agent Tool Trajectory
+      definition: >-
+        An evaluator that compares an agent's actual sequence of tool calls against
+        an expected reference trajectory, measuring order-sensitivity and parameter
+        accuracy.
+
+    - term: LLM-as-a-Judge
+      definition: >-
+        An evaluation pattern where a capable LLM (e.g., GPT-4, Claude) scores
+        the output of another LLM against defined criteria. Traceloop uses this
+        pattern for subjective quality dimensions like instruction adherence,
+        conversation quality, and topic adherence.
+
+    - term: Instruction Adherence
+      definition: >-
+        An LLM-as-a-judge evaluator that measures how well a model's response
+        follows explicit instructions provided in the system prompt or user turn.
+
+    - term: Hallucination
+      definition: >-
+        A model output that contains factual claims not supported by the provided
+        context or ground truth. Detected via the faithfulness and answer-correctness
+        evaluators.
+
+    - term: OpenLLMetry
+      definition: >-
+        Traceloop's open-source SDK (MIT licensed) that instruments LLM calls using
+        OpenTelemetry conventions. Supports Python, TypeScript/JavaScript, Go, and
+        Ruby with integrations for 20+ LLM providers and orchestration frameworks.
+
+    - term: Environment
+      definition: >-
+        A logical deployment context within a Traceloop organization (e.g.,
+        production, staging, development). Each environment has its own API key
+        and spans are scoped by environment.
+
+    - term: Metrics High Water Mark (HWM)
+      definition: >-
+        A timestamp indicating the last successfully processed evaluation result.
+        Used for incremental polling to detect new evaluation completions without
+        re-scanning historical data.
+
+    - term: Perplexity
+      definition: >-
+        A utility evaluator that measures text perplexity from token log-probabilities,
+        indicating how predictable or surprising the model output is. High perplexity
+        may signal incoherent or unusual output.
+
+    - term: Semantic Similarity
+      definition: >-
+        A utility evaluator that calculates the semantic similarity between two
+        texts using embedding-based comparison. Used to compare model completions
+        against reference answers without requiring exact string matches.
+
+    - term: Tone Detection
+      definition: >-
+        A utility evaluator that classifies the emotional tone of text (e.g.,
+        formal, casual, empathetic, aggressive). Useful for ensuring brand voice
+        consistency in customer-facing LLM applications.

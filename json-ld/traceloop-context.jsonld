@@ -1,0 +1,230 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "tl": "https://www.traceloop.com/vocab#",
+    "otel": "https://opentelemetry.io/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Traceloop": "tl:Traceloop",
+    "AutoMonitorSetup": "tl:AutoMonitorSetup",
+    "Evaluator": "tl:Evaluator",
+    "EvaluatorResult": "tl:EvaluatorResult",
+    "Span": "otel:Span",
+    "SpanWarehouse": "tl:SpanWarehouse",
+    "Organization": "schema:Organization",
+    "Environment": "tl:Environment",
+    "Selector": "tl:Selector",
+    "Metric": "tl:Metric",
+    "LLMMessage": "tl:LLMMessage",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "version": "schema:version",
+
+    "externalId": {
+      "@id": "tl:externalId",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "tl:status",
+      "@type": "xsd:string"
+    },
+    "selector": {
+      "@id": "tl:selector",
+      "@type": "@id"
+    },
+    "evaluators": {
+      "@id": "tl:evaluators",
+      "@container": "@list"
+    },
+    "score": {
+      "@id": "tl:score",
+      "@type": "xsd:decimal"
+    },
+    "passed": {
+      "@id": "tl:passed",
+      "@type": "xsd:boolean"
+    },
+    "reason": {
+      "@id": "tl:reason",
+      "@type": "xsd:string"
+    },
+    "input": {
+      "@id": "tl:input",
+      "@type": "@id"
+    },
+    "config": {
+      "@id": "tl:config",
+      "@type": "@id"
+    },
+    "threshold": {
+      "@id": "tl:threshold",
+      "@type": "xsd:decimal"
+    },
+    "projectId": {
+      "@id": "tl:projectId",
+      "@type": "xsd:string"
+    },
+    "environmentId": {
+      "@id": "tl:environmentId",
+      "@type": "xsd:string"
+    },
+    "organizationId": {
+      "@id": "tl:organizationId",
+      "@type": "xsd:string"
+    },
+    "apiKey": {
+      "@id": "tl:apiKey",
+      "@type": "xsd:string"
+    },
+    "prompt": {
+      "@id": "tl:prompt",
+      "@type": "xsd:string"
+    },
+    "completion": {
+      "@id": "tl:completion",
+      "@type": "xsd:string"
+    },
+    "context": {
+      "@id": "tl:context",
+      "@type": "xsd:string"
+    },
+    "question": {
+      "@id": "tl:question",
+      "@type": "xsd:string"
+    },
+    "answer": {
+      "@id": "tl:answer",
+      "@type": "xsd:string"
+    },
+    "groundTruth": {
+      "@id": "tl:groundTruth",
+      "@type": "xsd:string"
+    },
+    "text": {
+      "@id": "tl:text",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "tl:role",
+      "@type": "xsd:string"
+    },
+    "content": {
+      "@id": "tl:content",
+      "@type": "xsd:string"
+    },
+    "trajectoryPrompts": {
+      "@id": "tl:trajectoryPrompts",
+      "@container": "@list"
+    },
+    "trajectoryCompletions": {
+      "@id": "tl:trajectoryCompletions",
+      "@container": "@list"
+    },
+    "executedToolCalls": {
+      "@id": "tl:executedToolCalls",
+      "@container": "@list"
+    },
+    "expectedToolCalls": {
+      "@id": "tl:expectedToolCalls",
+      "@container": "@list"
+    },
+    "metricName": {
+      "@id": "tl:metricName",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "tl:value",
+      "@type": "xsd:decimal"
+    },
+    "timestamp": {
+      "@id": "tl:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "createdAt": {
+      "@id": "tl:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "tl:updatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "highWaterMark": {
+      "@id": "tl:highWaterMark",
+      "@type": "xsd:dateTime"
+    },
+    "pageSize": {
+      "@id": "tl:pageSize",
+      "@type": "xsd:integer"
+    },
+    "page": {
+      "@id": "tl:page",
+      "@type": "xsd:integer"
+    },
+    "total": {
+      "@id": "tl:total",
+      "@type": "xsd:integer"
+    },
+
+    "EvaluatorCategory": "tl:EvaluatorCategory",
+    "LLMAsJudge": "tl:LLMAsJudge",
+    "SafetyEvaluator": "tl:SafetyEvaluator",
+    "AgentEvaluator": "tl:AgentEvaluator",
+    "TechnicalValidator": "tl:TechnicalValidator",
+    "UtilityMetric": "tl:UtilityMetric",
+
+    "faithfulness": "tl:faithfulness",
+    "answerCorrectness": "tl:answerCorrectness",
+    "answerRelevancy": "tl:answerRelevancy",
+    "answerCompleteness": "tl:answerCompleteness",
+    "contextRelevance": "tl:contextRelevance",
+    "piiDetector": "tl:piiDetector",
+    "toxicityDetector": "tl:toxicityDetector",
+    "promptInjection": "tl:promptInjection",
+    "secretsDetector": "tl:secretsDetector",
+    "agentEfficiency": "tl:agentEfficiency",
+    "agentToolTrajectory": "tl:agentToolTrajectory",
+    "semanticSimilarity": "tl:semanticSimilarity",
+    "perplexity": "tl:perplexity",
+
+    "OpenLLMetry": "tl:OpenLLMetry",
+    "bearerAuth": "tl:bearerAuth",
+    "baseURL": {
+      "@id": "tl:baseURL",
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "tl:Traceloop",
+      "@type": "schema:SoftwareApplication",
+      "name": "Traceloop",
+      "description": "LLM reliability and observability platform built on OpenTelemetry",
+      "url": "https://www.traceloop.com/",
+      "schema:applicationCategory": "AI Observability",
+      "baseURL": "https://api.traceloop.com"
+    },
+    {
+      "@id": "tl:AutoMonitorSetup",
+      "@type": "schema:Action",
+      "name": "Auto Monitor Setup",
+      "description": "Automatic monitoring configuration that applies evaluators to matching LLM spans"
+    },
+    {
+      "@id": "tl:Evaluator",
+      "@type": "schema:Action",
+      "name": "Evaluator",
+      "description": "A scoring function that assesses a quality dimension of an LLM interaction"
+    },
+    {
+      "@id": "tl:OpenLLMetry",
+      "@type": "schema:SoftwareSourceCode",
+      "name": "OpenLLMetry",
+      "description": "Open-source OpenTelemetry-based SDK for LLM observability",
+      "url": "https://github.com/traceloop/openllmetry",
+      "schema:programmingLanguage": ["Python", "TypeScript", "Go", "Ruby"]
+    }
+  ]
+}

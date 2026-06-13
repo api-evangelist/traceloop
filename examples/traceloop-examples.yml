@@ -1,0 +1,173 @@
+traceloop_api_examples:
+  title: Traceloop API Examples
+  description: Example requests and responses for the Traceloop REST API
+  version: 1.0.0
+  examples:
+  - name: List Auto Monitor Setups
+    description: Retrieve all auto monitor setups for the organization
+    request:
+      method: GET
+      url: https://api.traceloop.com/v2/auto-monitor-setups
+      headers:
+        Authorization: Bearer <your-api-key>
+    response:
+      status: 200
+      body:
+        data:
+        - external_id: monitor-001
+          status: active
+          selector:
+            project_id: proj-abc123
+          evaluators:
+          - faithfulness
+          - pii-detector
+  - name: Create Auto Monitor Setup
+    description: Create a new automatic monitor setup for LLM observability
+    request:
+      method: POST
+      url: https://api.traceloop.com/v2/auto-monitor-setups
+      headers:
+        Authorization: Bearer <your-api-key>
+        Content-Type: application/json
+      body:
+        external_id: monitor-002
+        selector:
+          project_id: proj-xyz789
+        evaluators:
+        - toxicity-detector
+        - pii-detector
+        - faithfulness
+    response:
+      status: 201
+      body:
+        external_id: monitor-002
+        status: pending
+        created_at: '2026-06-13T00:00:00Z'
+  - name: Execute Faithfulness Evaluator
+    description: Check if a completion is faithful to the provided context
+    request:
+      method: POST
+      url: https://api.traceloop.com/v2/evaluators/faithfulness/execute
+      headers:
+        Authorization: Bearer <your-api-key>
+        Content-Type: application/json
+      body:
+        input:
+          question: What is the capital of France?
+          context: France is a country in Western Europe. Its capital city is Paris.
+          completion: The capital of France is Paris.
+    response:
+      status: 200
+      body:
+        score: 1.0
+        passed: true
+        reason: The completion accurately reflects the provided context.
+  - name: Execute PII Detector
+    description: Detect personally identifiable information in LLM output
+    request:
+      method: POST
+      url: https://api.traceloop.com/v2/evaluators/pii-detector/execute
+      headers:
+        Authorization: Bearer <your-api-key>
+        Content-Type: application/json
+      body:
+        input:
+          text: The customer John Doe can be reached at john.doe@example.com or 555-123-4567.
+    response:
+      status: 200
+      body:
+        score: 0.0
+        passed: false
+        detected_pii:
+        - EMAIL
+        - PERSON
+        - PHONE_NUMBER
+        reason: 'PII detected: email address, person name, and phone number found
+          in text.'
+  - name: Execute Toxicity Detector
+    description: Detect toxic or harmful language in LLM output
+    request:
+      method: POST
+      url: https://api.traceloop.com/v2/evaluators/toxicity-detector/execute
+      headers:
+        Authorization: Bearer <your-api-key>
+        Content-Type: application/json
+      body:
+        input:
+          text: This is a helpful and friendly response from the AI assistant.
+    response:
+      status: 200
+      body:
+        score: 1.0
+        passed: true
+        reason: No toxic language detected.
+  - name: Execute Answer Correctness Evaluator
+    description: Evaluate factual accuracy by comparing answers against ground truth
+    request:
+      method: POST
+      url: https://api.traceloop.com/v2/evaluators/answer-correctness/execute
+      headers:
+        Authorization: Bearer <your-api-key>
+        Content-Type: application/json
+      body:
+        input:
+          question: What year was the Eiffel Tower built?
+          completion: The Eiffel Tower was built in 1889.
+          ground_truth: The Eiffel Tower was constructed between 1887 and 1889.
+    response:
+      status: 200
+      body:
+        score: 0.95
+        passed: true
+        reason: Answer correctly identifies 1889 as the completion year, consistent
+          with ground truth.
+  - name: Query Metrics
+    description: Retrieve LLM quality metrics with filtering and pagination
+    request:
+      method: POST
+      url: https://api.traceloop.com/v2/metrics
+      headers:
+        Authorization: Bearer <your-api-key>
+        Content-Type: application/json
+      body:
+        filters:
+          project_id: proj-abc123
+          start_time: '2026-06-01T00:00:00Z'
+          end_time: '2026-06-13T00:00:00Z'
+        page: 1
+        page_size: 50
+    response:
+      status: 200
+      body:
+        data:
+        - metric_name: faithfulness
+          value: 0.87
+          timestamp: '2026-06-12T10:00:00Z'
+          project_id: proj-abc123
+        total: 142
+        page: 1
+        page_size: 50
+  - name: Create Organization
+    description: Create a new Traceloop organization with environments and API keys
+    request:
+      method: POST
+      url: https://api.traceloop.com/v2/organizations
+      headers:
+        Authorization: Bearer <your-admin-api-key>
+        Content-Type: application/json
+      body:
+        name: Acme AI Team
+        environments:
+        - production
+        - staging
+        - development
+        generate_api_keys: true
+    response:
+      status: 201
+      body:
+        organization_id: org-abc123
+        name: Acme AI Team
+        api_keys:
+          production: tl-prod-xxxxx
+          staging: tl-staging-xxxxx
+          development: tl-dev-xxxxx

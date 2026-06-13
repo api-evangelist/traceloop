@@ -47,6 +47,16 @@ apis:
         url: https://www.traceloop.com/docs/api-reference/introduction
       - type: OpenAPI
         url: https://www.traceloop.com/docs/openapi.json
+      - type: OpenAPI
+        url: openapi/traceloop-rest-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/traceloop-schema.json
+      - type: Examples
+        url: examples/traceloop-examples.yml
+      - type: Vocabulary
+        url: vocabulary/traceloop-vocabulary.yml
+      - type: JSONLDContext
+        url: json-ld/traceloop-context.jsonld
 common:
   - type: Website
     url: https://www.traceloop.com/
