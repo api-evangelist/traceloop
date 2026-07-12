@@ -58,6 +58,10 @@ apis:
       - type: JSONLDContext
         url: json-ld/traceloop-context.jsonld
 common:
+  - type: DomainSecurity
+    url: security/traceloop-domain-security.yml
+  - type: Authentication
+    url: authentication/traceloop-authentication.yml
   - type: Website
     url: https://www.traceloop.com/
   - type: Documentation

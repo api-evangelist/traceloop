@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/traceloop-rest-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: BearerAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Type "Bearer" followed by a space and JWT token.
+  sources:
+  - openapi/traceloop-rest-api-openapi.yml
