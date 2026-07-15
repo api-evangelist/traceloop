@@ -58,6 +58,8 @@ apis:
       - type: JSONLDContext
         url: json-ld/traceloop-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/traceloop-agentic-access.yml
   - type: DomainSecurity
     url: security/traceloop-domain-security.yml
   - type: Authentication
