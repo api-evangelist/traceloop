@@ -1,0 +1,367 @@
+openapi: 3.0.0
+info:
+  title: Traceloop auto-monitor-setups API
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://api.traceloop.com
+tags:
+- name: auto-monitor-setups
+paths:
+  /v2/auto-monitor-setups:
+    get:
+      description: List all auto monitor setups for the organization with optional filters
+      parameters:
+      - description: Filter by status (e.g., pending, completed)
+        in: query
+        name: status
+        schema:
+          type: string
+      - description: Filter by external ID
+        in: query
+        name: external_id
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/response.AutoMonitorSetupResponse'
+                type: array
+        '500':
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+      summary: List auto monitor setups
+      tags:
+      - auto-monitor-setups
+    post:
+      description: 'Create a new auto monitor setup for automatic monitor creation.
+
+
+        The `selector` field is a map of span attribute key-value pairs used to filter which spans
+
+        this monitor applies to. Keys are span attribute names and values can be strings, numbers, or booleans.
+
+
+        Common selector keys:
+
+        - `gen_ai.system` — LLM provider (e.g. "openai", "anthropic")
+
+        - `gen_ai.request.model` — model name (e.g. "gpt-4o", "claude-3-5-sonnet")
+
+        - `gen_ai.request.max_tokens` — max tokens (number)
+
+        - Any other span attribute from your traces'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/request.CreateAutoMonitorSetupInput'
+        description: Auto monitor setup configuration
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.AutoMonitorSetupResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+        '500':
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+      summary: Create an auto monitor setup
+      tags:
+      - auto-monitor-setups
+  /v2/auto-monitor-setups/{external_id}:
+    delete:
+      description: Delete an auto monitor setup by its external ID
+      parameters:
+      - description: Auto monitor setup external ID
+        in: path
+        name: external_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+        '500':
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+      summary: Delete an auto monitor setup by external ID
+      tags:
+      - auto-monitor-setups
+    get:
+      description: Get a specific auto monitor setup by its external ID
+      parameters:
+      - description: Auto monitor setup external ID
+        in: path
+        name: external_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.AutoMonitorSetupResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+        '500':
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+      summary: Get an auto monitor setup by external ID
+      tags:
+      - auto-monitor-setups
+    put:
+      description: Update an existing auto monitor setup by its external ID
+      parameters:
+      - description: Auto monitor setup external ID
+        in: path
+        name: external_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/request.UpdateAutoMonitorSetupInput'
+        description: Fields to update
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.AutoMonitorSetupResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+        '500':
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+      summary: Update an auto monitor setup by external ID
+      tags:
+      - auto-monitor-setups
+components:
+  schemas:
+    response.ErrorResponse:
+      description: Standard error response structure
+      properties:
+        error:
+          example: error message
+          type: string
+      type: object
+    evaluator.PropertyType:
+      enum:
+      - string
+      - int
+      - float
+      - boolean
+      - enum
+      type: string
+      x-enum-varnames:
+      - StringType
+      - IntType
+      - FloatType
+      - BooleanType
+      - EnumType
+    request.UpdateAutoMonitorSetupInput:
+      properties:
+        evaluators:
+          description: List of evaluator slugs to run on matched spans
+          example:
+          - hallucination
+          - toxicity
+          items:
+            type: string
+          type: array
+        selector:
+          description: 'Map of span attributes to filter which spans this monitor applies to.
+
+            Keys are span attribute names (e.g. gen_ai.system, gen_ai.request.model) and
+
+            values can be strings, numbers, or booleans.
+
+            Example: {"gen_ai.system": "openai", "gen_ai.request.model": "gpt-4o", "gen_ai.request.max_tokens": 1000}'
+          type: object
+      type: object
+    response.AutoMonitorEvaluatorResponse:
+      properties:
+        binding_id:
+          type: string
+        error_message:
+          type: string
+        evaluator_id:
+          type: string
+        evaluator_type:
+          type: string
+        input_schema:
+          items:
+            $ref: '#/components/schemas/evaluator.Property'
+          type: array
+        output_schema:
+          items:
+            $ref: '#/components/schemas/evaluator.Property'
+          type: array
+        processed_at:
+          type: string
+        status:
+          type: string
+      type: object
+    request.CreateAutoMonitorSetupInput:
+      properties:
+        evaluators:
+          description: List of evaluator slugs to run on matched spans
+          example:
+          - hallucination
+          - toxicity
+          items:
+            type: string
+          minItems: 1
+          type: array
+        external_id:
+          description: Unique identifier for the auto monitor setup, used to reference it in future requests
+          example: my-agent-monitor-1
+          type: string
+        selector:
+          description: 'Map of span attributes to filter which spans this monitor applies to.
+
+            Keys are span attribute names (e.g. gen_ai.system, gen_ai.request.model) and
+
+            values can be strings, numbers, or booleans.
+
+            Example: {"gen_ai.system": "openai", "gen_ai.request.model": "gpt-4o", "gen_ai.request.max_tokens": 1000}'
+          type: object
+      required:
+      - evaluators
+      - external_id
+      type: object
+    types.ComparisonOperator:
+      enum:
+      - equals
+      - not_equals
+      - contains
+      - not_contains
+      - in
+      - not_in
+      type: string
+      x-enum-varnames:
+      - ComparisonOperatorEquals
+      - ComparisonOperatorNotEquals
+      - ComparisonOperatorContains
+      - ComparisonOperatorNotContains
+      - ComparisonOperatorIn
+      - ComparisonOperatorNotIn
+    response.AutoMonitorSetupResponse:
+      properties:
+        created_at:
+          type: string
+        env_project_id:
+          type: string
+        evaluators:
+          items:
+            $ref: '#/components/schemas/response.AutoMonitorEvaluatorResponse'
+          type: array
+        external_id:
+          type: string
+        id:
+          type: string
+        init_rules:
+          items:
+            $ref: '#/components/schemas/types.Rule'
+          type: array
+        org_id:
+          type: string
+        project_id:
+          type: string
+        status:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    evaluator.Property:
+      properties:
+        description:
+          type: string
+        enum_values:
+          description: The allowed values for this property. Only applicable when `type` is `enum`.
+          items:
+            type: string
+          type: array
+        label:
+          type: string
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/evaluator.PropertyType'
+      required:
+      - name
+      - type
+      type: object
+    types.Rule:
+      properties:
+        key:
+          type: string
+        op:
+          $ref: '#/components/schemas/types.ComparisonOperator'
+        source:
+          type: string
+        value:
+          type: string
+        value_type:
+          type: string
+      type: object
+  securitySchemes:
+    BearerAuth:
+      description: Type "Bearer" followed by a space and JWT token.
+      in: header
+      name: Authorization
+      type: apiKey

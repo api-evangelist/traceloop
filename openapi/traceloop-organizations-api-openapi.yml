@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: Traceloop auto-monitor-setups organizations API
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://api.traceloop.com
+tags:
+- name: organizations
+paths:
+  /v2/organizations:
+    post:
+      description: Create a new organization with environments and API keys.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/request.CreateOrganizationRequest'
+        description: Organization creation request
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.CreateOrganizationResponse'
+        '400':
+          description: Invalid request body or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+        '403':
+          description: Not allowed to create organizations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response.ErrorResponse'
+      summary: Create a new organization
+      tags:
+      - organizations
+components:
+  schemas:
+    response.EnvironmentWithKeyResponse:
+      properties:
+        api_key:
+          type: string
+        slug:
+          type: string
+      type: object
+    response.CreateOrganizationResponse:
+      properties:
+        environments:
+          items:
+            $ref: '#/components/schemas/response.EnvironmentWithKeyResponse'
+          type: array
+        org_id:
+          type: string
+      type: object
+    response.ErrorResponse:
+      description: Standard error response structure
+      properties:
+        error:
+          example: error message
+          type: string
+      type: object
+    request.CreateOrganizationRequest:
+      properties:
+        envs:
+          items:
+            type: string
+          type: array
+        org_name:
+          type: string
+        retention_hours:
+          type: integer
+          description: Data retention period in hours (1-720). Defaults to 720 (1 month).
+          minimum: 1
+          maximum: 720
+          default: 720
+      required:
+      - org_name
+      type: object
+  securitySchemes:
+    BearerAuth:
+      description: Type "Bearer" followed by a space and JWT token.
+      in: header
+      name: Authorization
+      type: apiKey
