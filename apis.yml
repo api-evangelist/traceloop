@@ -12,7 +12,20 @@ description: >-
   integrates in one line of code across Python, TypeScript, Go, and Ruby with support
   for 20+ LLM providers and major orchestration frameworks.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/traceloop.png
 url: https://raw.githubusercontent.com/api-evangelist/traceloop/refs/heads/main/apis.yml
 created: 2026-06-13
 modified: 2026-06-13
@@ -27,36 +40,86 @@ tags:
   - Prompt Management
   - Machine Learning
 apis:
-  - name: Traceloop REST API
-    description: >-
-      REST API for managing LLM observability infrastructure including auto-monitor
-      setups, evaluators, metrics, organizations, tracing privacy controls, cost
-      reporting, and span warehouse queries. Authenticated with Bearer tokens
-      generated from the Traceloop dashboard.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.traceloop.com/docs/api-reference/introduction
-    baseURL: https://api.traceloop.com
-    tags:
-      - LLM Observability
-      - Tracing
-      - Evaluators
-      - Metrics
-      - Monitoring
-    properties:
-      - type: Documentation
-        url: https://www.traceloop.com/docs/api-reference/introduction
-      - type: OpenAPI
-        url: https://www.traceloop.com/docs/openapi.json
-      - type: OpenAPI
-        url: openapi/traceloop-rest-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/traceloop-schema.json
-      - type: Examples
-        url: examples/traceloop-examples.yml
-      - type: Vocabulary
-        url: vocabulary/traceloop-vocabulary.yml
-      - type: JSONLDContext
-        url: json-ld/traceloop-context.jsonld
+- aid: traceloop:traceloop-auto-monitor-setups-api
+  name: Traceloop auto-monitor-setups API
+  description: The auto-monitor-setups API from Traceloop — 2 operation(s) for auto-monitor-setups.
+  humanURL: https://www.traceloop.com/docs/api-reference/introduction
+  baseURL: https://api.traceloop.com
+  tags:
+  - auto-monitor-setups
+  properties:
+  - type: OpenAPI
+    url: openapi/traceloop-auto-monitor-setups-api-openapi.yml
+  - type: Documentation
+    url: https://www.traceloop.com/docs/api-reference/introduction
+  - type: JSONSchema
+    url: json-schema/traceloop-schema.json
+  - type: Examples
+    url: examples/traceloop-examples.yml
+  - type: Vocabulary
+    url: vocabulary/traceloop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/traceloop-context.jsonld
+- aid: traceloop:traceloop-evaluators-api
+  name: Traceloop evaluators API
+  description: The evaluators API from Traceloop — 36 operation(s) for evaluators.
+  humanURL: https://www.traceloop.com/docs/api-reference/introduction
+  baseURL: https://api.traceloop.com
+  tags:
+  - evaluators
+  properties:
+  - type: OpenAPI
+    url: openapi/traceloop-evaluators-api-openapi.yml
+  - type: Documentation
+    url: https://www.traceloop.com/docs/api-reference/introduction
+  - type: JSONSchema
+    url: json-schema/traceloop-schema.json
+  - type: Examples
+    url: examples/traceloop-examples.yml
+  - type: Vocabulary
+    url: vocabulary/traceloop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/traceloop-context.jsonld
+- aid: traceloop:traceloop-metrics-api
+  name: Traceloop metrics API
+  description: The metrics API from Traceloop — 2 operation(s) for metrics.
+  humanURL: https://www.traceloop.com/docs/api-reference/introduction
+  baseURL: https://api.traceloop.com
+  tags:
+  - metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/traceloop-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://www.traceloop.com/docs/api-reference/introduction
+  - type: JSONSchema
+    url: json-schema/traceloop-schema.json
+  - type: Examples
+    url: examples/traceloop-examples.yml
+  - type: Vocabulary
+    url: vocabulary/traceloop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/traceloop-context.jsonld
+- aid: traceloop:traceloop-organizations-api
+  name: Traceloop organizations API
+  description: The organizations API from Traceloop — 1 operation(s) for organizations.
+  humanURL: https://www.traceloop.com/docs/api-reference/introduction
+  baseURL: https://api.traceloop.com
+  tags:
+  - organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/traceloop-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://www.traceloop.com/docs/api-reference/introduction
+  - type: JSONSchema
+    url: json-schema/traceloop-schema.json
+  - type: Examples
+    url: examples/traceloop-examples.yml
+  - type: Vocabulary
+    url: vocabulary/traceloop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/traceloop-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/traceloop-agentic-access.yml
