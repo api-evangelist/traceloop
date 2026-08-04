@@ -1,0 +1,20 @@
+{
+  "provider": "traceloop",
+  "sources": [
+    "traceloop-auto-monitor-setups-api-openapi.yml",
+    "traceloop-evaluators-api-openapi.yml",
+    "traceloop-metrics-api-openapi.yml",
+    "traceloop-organizations-api-openapi.yml"
+  ],
+  "outputs": [
+    "traceloop-auto-monitor-setups-api-openapi.yml",
+    "traceloop-evaluators-api-openapi.yml",
+    "traceloop-metrics-api-openapi.yml",
+    "traceloop-organizations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
