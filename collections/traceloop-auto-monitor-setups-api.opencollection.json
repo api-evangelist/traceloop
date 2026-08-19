@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Traceloop auto-monitor-setups API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "auto-monitor-setups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List auto monitor setups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.traceloop.com/v2/auto-monitor-setups",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status (e.g., pending, completed)"
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by external ID"
+              }
+            ]
+          },
+          "docs": "List all auto monitor setups for the organization with optional filters"
+        },
+        {
+          "info": {
+            "name": "Create an auto monitor setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/auto-monitor-setups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new auto monitor setup for automatic monitor creation.\n\nThe `selector` field is a map of span attribute key-value pairs used to filter which spans\nthis monitor applies to. Keys are span attribute names and values can be strings, numbers, or booleans.\n\nCommon selector keys:\n- `gen_ai.system` — LLM provider (e.g. \"openai\", \"anthropic\")\n- `gen_ai.request.model` — model name (e.g. \"gpt-4o\", \"claude-3-5-sonnet\")\n- `gen_ai.request.max_tokens` — max tokens (number)\n- Any other span attribute f"
+        },
+        {
+          "info": {
+            "name": "Get an auto monitor setup by external ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.traceloop.com/v2/auto-monitor-setups/:external_id",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "Auto monitor setup external ID"
+              }
+            ]
+          },
+          "docs": "Get a specific auto monitor setup by its external ID"
+        },
+        {
+          "info": {
+            "name": "Update an auto monitor setup by external ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.traceloop.com/v2/auto-monitor-setups/:external_id",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "Auto monitor setup external ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing auto monitor setup by its external ID"
+        },
+        {
+          "info": {
+            "name": "Delete an auto monitor setup by external ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.traceloop.com/v2/auto-monitor-setups/:external_id",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "Auto monitor setup external ID"
+              }
+            ]
+          },
+          "docs": "Delete an auto monitor setup by its external ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

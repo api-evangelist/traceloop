@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Traceloop auto-monitor-setups metrics API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get metrics with filtering and grouping",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/metrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves metrics data with support for filtering, sorting, and pagination. Metrics are grouped by metric name with individual data points. Supports filtering by direct column fields (bool_value, trace_id, etc.), label fields (labels.agent_name, labels.trace_id), and attribute fields (attributes.*)."
+        },
+        {
+          "info": {
+            "name": "Get metrics high water mark",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.traceloop.com/v2/metrics_hwm"
+          },
+          "docs": "Returns the timestamp of the last successfully processed evaluation (high water mark)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

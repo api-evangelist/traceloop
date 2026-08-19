@@ -1,0 +1,365 @@
+{
+  "item": [
+    {
+      "id": "c1923581-dccc-4f7b-936f-df330ad4054c",
+      "name": "metrics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d6a209c7-707b-4e17-8f80-3883197c8f57",
+          "name": "Get metrics with filtering and grouping",
+          "request": {
+            "name": "Get metrics with filtering and grouping",
+            "description": {
+              "content": "Retrieves metrics data with support for filtering, sorting, and pagination. Metrics are grouped by metric name with individual data points. Supports filtering by direct column fields (bool_value, trace_id, etc.), label fields (labels.agent_name, labels.trace_id), and attribute fields (attributes.*).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from_timestamp_sec\": \"<integer>\",\n  \"to_timestamp_sec\": \"<integer>\",\n  \"cursor\": \"<integer>\",\n  \"environments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"limit\": \"<integer>\",\n  \"logical_operator\": \"<string>\",\n  \"metric_name\": \"<string>\",\n  \"metric_source\": \"<string>\",\n  \"sort_by\": \"<string>\",\n  \"sort_order\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d68aad7e-95bb-4078-8a14-80c818068152",
+              "name": "Grouped metrics with data points",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from_timestamp_sec\": 1772905218,\n  \"to_timestamp_sec\": 1772905218,\n  \"cursor\": 1772905218000,\n  \"environments\": [\n    \"prd\",\n    \"stg\",\n    \"dev\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"labels.agent_name\",\n      \"operator\": \"equals\",\n      \"value\": \"Travel Planner Agent\",\n      \"values\": [\n        \"Travel Planner Agent\",\n        \"Calendar Planner Agent\"\n      ]\n    },\n    {\n      \"field\": \"labels.agent_name\",\n      \"operator\": \"equals\",\n      \"value\": \"Travel Planner Agent\",\n      \"values\": [\n        \"Travel Planner Agent\",\n        \"Calendar Planner Agent\"\n      ]\n    }\n  ],\n  \"limit\": 50,\n  \"logical_operator\": \"<string>\",\n  \"metric_name\": \"answer relevancy\",\n  \"metric_source\": \"llm_as_a_judge\",\n  \"sort_by\": \"timestamp\",\n  \"sort_order\": \"ASC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metrics\": {\n    \"data\": [\n      {\n        \"metric_name\": \"answer relevancy\",\n        \"organization_id\": \"string\",\n        \"points\": [\n          {\n            \"bool_value\": false,\n            \"enum_value\": \"string\",\n            \"numeric_value\": 6362.46353596035,\n            \"event_time\": 6591,\n            \"labels\": {\n              \"agent_name\": \"Travel Planner Agent\",\n              \"entity_type\": \"span\",\n              \"env_project_id\": \"1111\",\n              \"environment\": \"dev\",\n              \"evaluator_name\": \"\",\n              \"insert_time\": \"1772616490000\",\n              \"metric_source\": \"word_count\",\n              \"metric_type\": \"numeric\",\n              \"model\": \"gpt-4o-2024-08-06\",\n              \"org_id\": \"12345\",\n              \"run_id\": \"54321\",\n              \"service_name\": \"travel-agent-demo\",\n              \"span_id\": \"e118a1985c9cff23\",\n              \"trace_id\": \"2c98a42d1225cb786f3395d97ca3014d\",\n              \"unit\": \"words\",\n              \"vendor\": \"openai\"\n            }\n          },\n          {\n            \"bool_value\": false,\n            \"enum_value\": \"string\",\n            \"numeric_value\": 9613.28978729479,\n            \"event_time\": 4095,\n            \"labels\": {\n              \"agent_name\": \"Travel Planner Agent\",\n              \"entity_type\": \"span\",\n              \"env_project_id\": \"1111\",\n              \"environment\": \"dev\",\n              \"evaluator_name\": \"\",\n              \"insert_time\": \"1772616490000\",\n              \"metric_source\": \"word_count\",\n              \"metric_type\": \"numeric\",\n              \"model\": \"gpt-4o-2024-08-06\",\n              \"org_id\": \"12345\",\n              \"run_id\": \"54321\",\n              \"service_name\": \"travel-agent-demo\",\n              \"span_id\": \"e118a1985c9cff23\",\n              \"trace_id\": \"2c98a42d1225cb786f3395d97ca3014d\",\n              \"unit\": \"words\",\n              \"vendor\": \"openai\"\n            }\n          }\n        ]\n      },\n      {\n        \"metric_name\": \"answer relevancy\",\n        \"organization_id\": \"string\",\n        \"points\": [\n          {\n            \"bool_value\": false,\n            \"enum_value\": \"string\",\n            \"numeric_value\": 1678.1517726035622,\n            \"event_time\": 4298,\n            \"labels\": {\n              \"agent_name\": \"Travel Planner Agent\",\n              \"entity_type\": \"span\",\n              \"env_project_id\": \"1111\",\n              \"environment\": \"dev\",\n              \"evaluator_name\": \"\",\n              \"insert_time\": \"1772616490000\",\n              \"metric_source\": \"word_count\",\n              \"metric_type\": \"numeric\",\n              \"model\": \"gpt-4o-2024-08-06\",\n              \"org_id\": \"12345\",\n              \"run_id\": \"54321\",\n              \"service_name\": \"travel-agent-demo\",\n              \"span_id\": \"e118a1985c9cff23\",\n              \"trace_id\": \"2c98a42d1225cb786f3395d97ca3014d\",\n              \"unit\": \"words\",\n              \"vendor\": \"openai\"\n            }\n          },\n          {\n            \"bool_value\": false,\n            \"enum_value\": \"string\",\n            \"numeric_value\": 1733.823423944263,\n            \"event_time\": 2765,\n            \"labels\": {\n              \"agent_name\": \"Travel Planner Agent\",\n              \"entity_type\": \"span\",\n              \"env_project_id\": \"1111\",\n              \"environment\": \"dev\",\n              \"evaluator_name\": \"\",\n              \"insert_time\": \"1772616490000\",\n              \"metric_source\": \"word_count\",\n              \"metric_type\": \"numeric\",\n              \"model\": \"gpt-4o-2024-08-06\",\n              \"org_id\": \"12345\",\n              \"run_id\": \"54321\",\n              \"service_name\": \"travel-agent-demo\",\n              \"span_id\": \"e118a1985c9cff23\",\n              \"trace_id\": \"2c98a42d1225cb786f3395d97ca3014d\",\n              \"unit\": \"words\",\n              \"vendor\": \"openai\"\n            }\n          }\n        ]\n      }\n    ],\n    \"next_cursor\": \"string\",\n    \"total_points\": 3951,\n    \"total_results\": 3167\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf975fdf-b848-4c75-a417-c2a8aa8aa04e",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from_timestamp_sec\": 1772905218,\n  \"to_timestamp_sec\": 1772905218,\n  \"cursor\": 1772905218000,\n  \"environments\": [\n    \"prd\",\n    \"stg\",\n    \"dev\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"labels.agent_name\",\n      \"operator\": \"equals\",\n      \"value\": \"Travel Planner Agent\",\n      \"values\": [\n        \"Travel Planner Agent\",\n        \"Calendar Planner Agent\"\n      ]\n    },\n    {\n      \"field\": \"labels.agent_name\",\n      \"operator\": \"equals\",\n      \"value\": \"Travel Planner Agent\",\n      \"values\": [\n        \"Travel Planner Agent\",\n        \"Calendar Planner Agent\"\n      ]\n    }\n  ],\n  \"limit\": 50,\n  \"logical_operator\": \"<string>\",\n  \"metric_name\": \"answer relevancy\",\n  \"metric_source\": \"llm_as_a_judge\",\n  \"sort_by\": \"timestamp\",\n  \"sort_order\": \"ASC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04d05a68-6814-4e3e-b105-dad8460f798c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from_timestamp_sec\": 1772905218,\n  \"to_timestamp_sec\": 1772905218,\n  \"cursor\": 1772905218000,\n  \"environments\": [\n    \"prd\",\n    \"stg\",\n    \"dev\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"labels.agent_name\",\n      \"operator\": \"equals\",\n      \"value\": \"Travel Planner Agent\",\n      \"values\": [\n        \"Travel Planner Agent\",\n        \"Calendar Planner Agent\"\n      ]\n    },\n    {\n      \"field\": \"labels.agent_name\",\n      \"operator\": \"equals\",\n      \"value\": \"Travel Planner Agent\",\n      \"values\": [\n        \"Travel Planner Agent\",\n        \"Calendar Planner Agent\"\n      ]\n    }\n  ],\n  \"limit\": 50,\n  \"logical_operator\": \"<string>\",\n  \"metric_name\": \"answer relevancy\",\n  \"metric_source\": \"llm_as_a_judge\",\n  \"sort_by\": \"timestamp\",\n  \"sort_order\": \"ASC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dab768bd-7a3c-470f-8a48-882ac6cfc9b2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from_timestamp_sec\": 1772905218,\n  \"to_timestamp_sec\": 1772905218,\n  \"cursor\": 1772905218000,\n  \"environments\": [\n    \"prd\",\n    \"stg\",\n    \"dev\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"labels.agent_name\",\n      \"operator\": \"equals\",\n      \"value\": \"Travel Planner Agent\",\n      \"values\": [\n        \"Travel Planner Agent\",\n        \"Calendar Planner Agent\"\n      ]\n    },\n    {\n      \"field\": \"labels.agent_name\",\n      \"operator\": \"equals\",\n      \"value\": \"Travel Planner Agent\",\n      \"values\": [\n        \"Travel Planner Agent\",\n        \"Calendar Planner Agent\"\n      ]\n    }\n  ],\n  \"limit\": 50,\n  \"logical_operator\": \"<string>\",\n  \"metric_name\": \"answer relevancy\",\n  \"metric_source\": \"llm_as_a_judge\",\n  \"sort_by\": \"timestamp\",\n  \"sort_order\": \"ASC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4aae7c19-4def-42b8-91e6-7ffedbe479fb",
+          "name": "Get metrics high water mark",
+          "request": {
+            "name": "Get metrics high water mark",
+            "description": {
+              "content": "Returns the timestamp of the last successfully processed evaluation (high water mark)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "metrics_hwm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ce4a099-cc31-4d32-acff-09b28bc5c354",
+              "name": "High water mark timestamp in milliseconds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics_hwm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"high_water_mark\": 8765\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f616d1ad-7402-42dc-a335-74455cadc608",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics_hwm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.traceloop.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9c01c87f-14ce-4506-b9a3-b76db294cf02",
+    "name": "Traceloop auto-monitor-setups metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

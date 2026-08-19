@@ -1,0 +1,257 @@
+{
+  "item": [
+    {
+      "id": "8a388331-85f9-4f0e-8dcf-693ffd9bec62",
+      "name": "organizations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e9bae4b-a962-417e-bd8f-b20754234a3d",
+          "name": "Create a new organization",
+          "request": {
+            "name": "Create a new organization",
+            "description": {
+              "content": "Create a new organization with environments and API keys.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"org_name\": \"<string>\",\n  \"envs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"retention_hours\": 720\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "12921792-a2b5-4805-bc79-ad2e11f0ea2b",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"org_name\": \"<string>\",\n  \"envs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"retention_hours\": 720\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"environments\": [\n    {\n      \"api_key\": \"string\",\n      \"slug\": \"string\"\n    },\n    {\n      \"api_key\": \"string\",\n      \"slug\": \"string\"\n    }\n  ],\n  \"org_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0b053f9-67d6-4173-84d6-3dc2d17ff156",
+              "name": "Invalid request body or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"org_name\": \"<string>\",\n  \"envs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"retention_hours\": 720\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e224c287-e238-4926-aa28-0683fa281c36",
+              "name": "Not allowed to create organizations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"org_name\": \"<string>\",\n  \"envs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"retention_hours\": 720\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c8cf14d-904a-429d-933a-d27e20abb712",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"org_name\": \"<string>\",\n  \"envs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"retention_hours\": 720\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.traceloop.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a1730aef-579f-4b64-b7e7-5cf5bfc30726",
+    "name": "Traceloop auto-monitor-setups organizations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

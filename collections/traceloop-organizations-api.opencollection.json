@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Traceloop auto-monitor-setups organizations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new organization with environments and API keys."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

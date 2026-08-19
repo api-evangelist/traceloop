@@ -1,0 +1,768 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Traceloop auto-monitor-setups evaluators API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "evaluators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a custom LLM-as-a-judge evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom evaluator at the organization level without project or environment bindings. The evaluator uses LLM-as-a-judge to evaluate inputs based on the provided configuration. The response format is automatically generated from the output schema."
+        },
+        {
+          "info": {
+            "name": "Execute agent-efficiency evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/agent-efficiency/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Evaluate agent efficiency - detect redundant calls, unnecessary follow-ups\n\n**Request Body:**\n- `input.trajectory_prompts` (string, required): JSON array of prompts in the agent trajectory\n- `input.trajectory_completions` (string, required): JSON array of completions in the agent trajectory"
+        },
+        {
+          "info": {
+            "name": "Execute agent-flow-quality evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/agent-flow-quality/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Validate agent trajectory against user-defined conditions\n\n**Request Body:**\n- `input.trajectory_prompts` (string, required): JSON array of prompts in the agent trajectory\n- `input.trajectory_completions` (string, required): JSON array of completions in the agent trajectory\n- `config.conditions` (array of strings, required): Array of evaluation conditions/rules to validate against\n- `config.threshold` (number, required): Score threshold for pass/fail determination (0.0-1.0)"
+        },
+        {
+          "info": {
+            "name": "Execute agent-goal-accuracy evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/agent-goal-accuracy/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Evaluate agent goal accuracy\n\n**Request Body:**\n- `input.question` (string, required): The original question or goal\n- `input.completion` (string, required): The agent's completion/response\n- `input.reference` (string, required): The expected reference answer"
+        },
+        {
+          "info": {
+            "name": "Execute agent-goal-completeness evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/agent-goal-completeness/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Measure if agent accomplished all user goals\n\n**Request Body:**\n- `input.trajectory_prompts` (string, required): JSON array of prompts in the agent trajectory\n- `input.trajectory_completions` (string, required): JSON array of completions in the agent trajectory\n- `config.threshold` (number, required): Score threshold for pass/fail determination (0.0-1.0)"
+        },
+        {
+          "info": {
+            "name": "Execute agent-tool-error-detector evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/agent-tool-error-detector/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect errors or failures during tool execution\n\n**Request Body:**\n- `input.tool_input` (string, required): JSON string of the tool input\n- `input.tool_output` (string, required): JSON string of the tool output"
+        },
+        {
+          "info": {
+            "name": "Execute agent-tool-trajectory evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/agent-tool-trajectory/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Compare actual tool calls against expected reference tool calls\n\n**Request Body:**\n- `input.executed_tool_calls` (string, required): JSON array of actual tool calls made by the agent\n- `input.expected_tool_calls` (string, required): JSON array of expected/reference tool calls\n- `config.threshold` (float, optional): Score threshold for pass/fail determination (default: 0.5)\n- `config.mismatch_sensitive` (bool, optional): Whether tool calls must match exactly (default: false)\n- `config.order_sensi"
+        },
+        {
+          "info": {
+            "name": "Execute answer-completeness evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/answer-completeness/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Evaluate whether the answer is complete and contains all the necessary information\n\n**Request Body:**\n- `input.question` (string, required): The original question\n- `input.completion` (string, required): The completion to evaluate for completeness\n- `input.context` (string, required): The context that provides the complete information"
+        },
+        {
+          "info": {
+            "name": "Execute answer-correctness evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/answer-correctness/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Evaluate factual accuracy by comparing answers against ground truth\n\n**Request Body:**\n- `input.question` (string, required): The original question\n- `input.completion` (string, required): The completion to evaluate\n- `input.ground_truth` (string, required): The expected correct answer"
+        },
+        {
+          "info": {
+            "name": "Execute answer-relevancy evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/answer-relevancy/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Check if an answer is relevant to a question\n\n**Request Body:**\n- `input.answer` (string, required): The answer to evaluate for relevancy\n- `input.question` (string, required): The question that the answer should be relevant to"
+        },
+        {
+          "info": {
+            "name": "Execute char-count evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/char-count/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Count the number of characters in text\n\n**Request Body:**\n- `input.text` (string, required): The text to count characters in"
+        },
+        {
+          "info": {
+            "name": "Execute char-count-ratio evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/char-count-ratio/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Calculate the ratio of characters between two texts\n\n**Request Body:**\n- `input.numerator_text` (string, required): The numerator text (will be divided by denominator)\n- `input.denominator_text` (string, required): The denominator text (divides the numerator)"
+        },
+        {
+          "info": {
+            "name": "Execute context-relevance evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/context-relevance/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Evaluate whether retrieved context contains sufficient information to answer the query\n\n**Request Body:**\n- `input.query` (string, required): The query/question to evaluate context relevance for\n- `input.completion` (string, required): The completion to evaluate for context relevance\n- `input.context` (string, required): The context to evaluate for relevance to the query\n- `config.model` (string, optional): Model to use for evaluation (default: gpt-4o)"
+        },
+        {
+          "info": {
+            "name": "Execute conversation-quality evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/conversation-quality/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Evaluate conversation quality based on tone, clarity, flow, responsiveness, and transparency\n\n**Request Body:**\n- `input.prompts` (string, required): JSON array of prompts in the conversation\n- `input.completions` (string, required): JSON array of completions in the conversation"
+        },
+        {
+          "info": {
+            "name": "Execute faithfulness evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/faithfulness/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Check if a completion is faithful to the provided context\n\n**Request Body:**\n- `input.completion` (string, required): The LLM completion to check for faithfulness\n- `input.context` (string, required): The context that the completion should be faithful to\n- `input.question` (string, required): The original question asked"
+        },
+        {
+          "info": {
+            "name": "Execute html-comparison evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/html-comparison/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Compare two HTML documents for structural and content similarity\n\n**Request Body:**\n- `input.html1` (string, required): The first HTML document to compare\n- `input.html2` (string, required): The second HTML document to compare"
+        },
+        {
+          "info": {
+            "name": "Execute instruction-adherence evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/instruction-adherence/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Evaluate how well responses follow given instructions\n\n**Request Body:**\n- `input.instructions` (string, required): The instructions that should be followed\n- `input.response` (string, required): The response to evaluate for instruction adherence"
+        },
+        {
+          "info": {
+            "name": "Execute intent-change evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/intent-change/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect changes in user intent between prompts and completions\n\n**Request Body:**\n- `input.prompts` (string, required): JSON array of prompts in the conversation\n- `input.completions` (string, required): JSON array of completions in the conversation"
+        },
+        {
+          "info": {
+            "name": "Execute json-validator evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/json-validator/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Validate JSON syntax\n\n**Request Body:**\n- `input.text` (string, required): The text to validate as JSON\n- `config.enable_schema_validation` (bool, optional): Enable JSON schema validation\n- `config.schema_string` (string, optional): JSON schema to validate against"
+        },
+        {
+          "info": {
+            "name": "Execute perplexity evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/perplexity/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Measure text perplexity from logprobs\n\n**Request Body:**\n- `input.logprobs` (string, required): JSON array of log probabilities from the model"
+        },
+        {
+          "info": {
+            "name": "Execute pii-detector evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/pii-detector/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect personally identifiable information in text\n\n**Request Body:**\n- `input.text` (string, required): The text to scan for personally identifiable information\n- `config.probability_threshold` (float, optional): Detection threshold (default: 0.8)"
+        },
+        {
+          "info": {
+            "name": "Execute placeholder-regex evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/placeholder-regex/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Validate text against a placeholder regex pattern\n\n**Request Body:**\n- `input.placeholder_name` (string, required): The name of the placeholder to substitute\n- `input.placeholder_value` (string, required): The value to substitute into the regex placeholder\n- `input.text` (string, required): The text to validate against the regex pattern\n- `config.should_match` (bool, optional): Whether the text should match the regex\n- `config.case_sensitive` (bool, optional): Case-sensitive matching\n- `config.d"
+        },
+        {
+          "info": {
+            "name": "Execute profanity-detector evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/profanity-detector/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect profanity in text\n\n**Request Body:**\n- `input.text` (string, required): The text to scan for profanity"
+        },
+        {
+          "info": {
+            "name": "Execute prompt-injection evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/prompt-injection/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect prompt injection attempts\n\n**Request Body:**\n- `input.prompt` (string, required): The prompt to check for injection attempts\n- `config.threshold` (float, optional): Detection threshold (default: 0.5)"
+        },
+        {
+          "info": {
+            "name": "Execute prompt-perplexity evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/prompt-perplexity/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Measure prompt perplexity to detect potential injection attempts\n\n**Request Body:**\n- `input.prompt` (string, required): The prompt to calculate perplexity for"
+        },
+        {
+          "info": {
+            "name": "Execute regex-validator evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/regex-validator/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Validate text against a regex pattern\n\n**Request Body:**\n- `input.text` (string, required): The text to validate against a regex pattern\n- `config.regex` (string, optional): The regex pattern to match against\n- `config.should_match` (bool, optional): Whether the text should match the regex\n- `config.case_sensitive` (bool, optional): Case-sensitive matching\n- `config.dot_include_nl` (bool, optional): Dot matches newlines\n- `config.multi_line` (bool, optional): Multi-line mode"
+        },
+        {
+          "info": {
+            "name": "Execute secrets-detector evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/secrets-detector/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect secrets and credentials in text\n\n**Request Body:**\n- `input.text` (string, required): The text to scan for secrets (API keys, passwords, etc.)"
+        },
+        {
+          "info": {
+            "name": "Execute semantic-similarity evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/semantic-similarity/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Calculate semantic similarity between completion and reference\n\n**Request Body:**\n- `input.completion` (string, required): The completion text to compare\n- `input.reference` (string, required): The reference text to compare against"
+        },
+        {
+          "info": {
+            "name": "Execute sexism-detector evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/sexism-detector/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect sexist language and bias\n\n**Request Body:**\n- `input.text` (string, required): The text to scan for sexist content\n- `config.threshold` (float, optional): Detection threshold (default: 0.5)"
+        },
+        {
+          "info": {
+            "name": "Execute sql-validator evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/sql-validator/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Validate SQL query syntax\n\n**Request Body:**\n- `input.text` (string, required): The text to validate as SQL"
+        },
+        {
+          "info": {
+            "name": "Execute tone-detection evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/tone-detection/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect the tone of the text\n\n**Request Body:**\n- `input.text` (string, required): The text to detect the tone of"
+        },
+        {
+          "info": {
+            "name": "Execute topic-adherence evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/topic-adherence/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Evaluate topic adherence\n\n**Request Body:**\n- `input.question` (string, required): The original question\n- `input.completion` (string, required): The completion to evaluate\n- `input.reference_topics` (string, required): Comma-separated list of expected topics"
+        },
+        {
+          "info": {
+            "name": "Execute toxicity-detector evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/toxicity-detector/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect toxic or harmful language\n\n**Request Body:**\n- `input.text` (string, required): The text to scan for toxic content\n- `config.threshold` (float, optional): Detection threshold (default: 0.5)"
+        },
+        {
+          "info": {
+            "name": "Execute uncertainty-detector evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/uncertainty-detector/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detect uncertainty in the text\n\n**Request Body:**\n- `input.prompt` (string, required): The text to detect uncertainty in"
+        },
+        {
+          "info": {
+            "name": "Execute word-count evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/word-count/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Count the number of words in text\n\n**Request Body:**\n- `input.text` (string, required): The text to count words in"
+        },
+        {
+          "info": {
+            "name": "Execute word-count-ratio evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.traceloop.com/v2/evaluators/word-count-ratio/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Calculate the ratio of words between two texts\n\n**Request Body:**\n- `input.numerator_text` (string, required): The numerator text (will be divided by denominator)\n- `input.denominator_text` (string, required): The denominator text (divides the numerator)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

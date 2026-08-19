@@ -1,0 +1,976 @@
+{
+  "item": [
+    {
+      "id": "ee88f570-a206-405f-9074-5150e03b0014",
+      "name": "auto-monitor-setups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cbd019fd-cd6d-4853-86a0-2388e1ce85ee",
+          "name": "List auto monitor setups",
+          "request": {
+            "name": "List auto monitor setups",
+            "description": {
+              "content": "List all auto monitor setups for the organization with optional filters",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "auto-monitor-setups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status (e.g., pending, completed)"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "Filter by external ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b98f27b3-51de-4b4d-8ff0-4eeec74a106d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created_at\": \"string\",\n    \"env_project_id\": \"string\",\n    \"evaluators\": [\n      {\n        \"binding_id\": \"string\",\n        \"error_message\": \"string\",\n        \"evaluator_id\": \"string\",\n        \"evaluator_type\": \"string\",\n        \"input_schema\": [\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          }\n        ],\n        \"output_schema\": [\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          }\n        ],\n        \"processed_at\": \"string\",\n        \"status\": \"string\"\n      },\n      {\n        \"binding_id\": \"string\",\n        \"error_message\": \"string\",\n        \"evaluator_id\": \"string\",\n        \"evaluator_type\": \"string\",\n        \"input_schema\": [\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          }\n        ],\n        \"output_schema\": [\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          }\n        ],\n        \"processed_at\": \"string\",\n        \"status\": \"string\"\n      }\n    ],\n    \"external_id\": \"string\",\n    \"id\": \"string\",\n    \"init_rules\": [\n      {\n        \"key\": \"string\",\n        \"op\": \"not_in\",\n        \"source\": \"string\",\n        \"value\": \"string\",\n        \"value_type\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"op\": \"in\",\n        \"source\": \"string\",\n        \"value\": \"string\",\n        \"value_type\": \"string\"\n      }\n    ],\n    \"org_id\": \"string\",\n    \"project_id\": \"string\",\n    \"status\": \"string\",\n    \"updated_at\": \"string\"\n  },\n  {\n    \"created_at\": \"string\",\n    \"env_project_id\": \"string\",\n    \"evaluators\": [\n      {\n        \"binding_id\": \"string\",\n        \"error_message\": \"string\",\n        \"evaluator_id\": \"string\",\n        \"evaluator_type\": \"string\",\n        \"input_schema\": [\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          }\n        ],\n        \"output_schema\": [\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          }\n        ],\n        \"processed_at\": \"string\",\n        \"status\": \"string\"\n      },\n      {\n        \"binding_id\": \"string\",\n        \"error_message\": \"string\",\n        \"evaluator_id\": \"string\",\n        \"evaluator_type\": \"string\",\n        \"input_schema\": [\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          }\n        ],\n        \"output_schema\": [\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"enum_values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"label\": \"string\"\n          }\n        ],\n        \"processed_at\": \"string\",\n        \"status\": \"string\"\n      }\n    ],\n    \"external_id\": \"string\",\n    \"id\": \"string\",\n    \"init_rules\": [\n      {\n        \"key\": \"string\",\n        \"op\": \"equals\",\n        \"source\": \"string\",\n        \"value\": \"string\",\n        \"value_type\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"op\": \"not_equals\",\n        \"source\": \"string\",\n        \"value\": \"string\",\n        \"value_type\": \"string\"\n      }\n    ],\n    \"org_id\": \"string\",\n    \"project_id\": \"string\",\n    \"status\": \"string\",\n    \"updated_at\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e74fb451-9df2-4471-bef3-e336c52561e3",
+              "name": "Internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf595c28-063b-46ce-b6a8-e55b421ea291",
+          "name": "Create an auto monitor setup",
+          "request": {
+            "name": "Create an auto monitor setup",
+            "description": {
+              "content": "Create a new auto monitor setup for automatic monitor creation.\n\nThe `selector` field is a map of span attribute key-value pairs used to filter which spans\nthis monitor applies to. Keys are span attribute names and values can be strings, numbers, or booleans.\n\nCommon selector keys:\n- `gen_ai.system` — LLM provider (e.g. \"openai\", \"anthropic\")\n- `gen_ai.request.model` — model name (e.g. \"gpt-4o\", \"claude-3-5-sonnet\")\n- `gen_ai.request.max_tokens` — max tokens (number)\n- Any other span attribute from your traces",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "auto-monitor-setups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"evaluators\": [\n    \"<string>\"\n  ],\n  \"external_id\": \"<string>\",\n  \"selector\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "118629c2-d2d9-47e2-9c3d-da8d0cf7a78d",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"evaluators\": [\n    \"hallucination\",\n    \"toxicity\"\n  ],\n  \"external_id\": \"my-agent-monitor-1\",\n  \"selector\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"env_project_id\": \"string\",\n  \"evaluators\": [\n    {\n      \"binding_id\": \"string\",\n      \"error_message\": \"string\",\n      \"evaluator_id\": \"string\",\n      \"evaluator_type\": \"string\",\n      \"input_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"float\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"enum\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"output_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"int\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"float\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"processed_at\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"binding_id\": \"string\",\n      \"error_message\": \"string\",\n      \"evaluator_id\": \"string\",\n      \"evaluator_type\": \"string\",\n      \"input_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"enum\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"output_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"int\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"int\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"processed_at\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"external_id\": \"string\",\n  \"id\": \"string\",\n  \"init_rules\": [\n    {\n      \"key\": \"string\",\n      \"op\": \"contains\",\n      \"source\": \"string\",\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"op\": \"contains\",\n      \"source\": \"string\",\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    }\n  ],\n  \"org_id\": \"string\",\n  \"project_id\": \"string\",\n  \"status\": \"string\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "294bf256-1703-4691-a95d-500566bc5747",
+              "name": "Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"evaluators\": [\n    \"hallucination\",\n    \"toxicity\"\n  ],\n  \"external_id\": \"my-agent-monitor-1\",\n  \"selector\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa87694c-3f0d-44a5-b15e-e0c93249dc5e",
+              "name": "Internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"evaluators\": [\n    \"hallucination\",\n    \"toxicity\"\n  ],\n  \"external_id\": \"my-agent-monitor-1\",\n  \"selector\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c79a0d1-5fde-4eb5-ad99-7b10e0843f1a",
+          "name": "Delete an auto monitor setup by external ID",
+          "request": {
+            "name": "Delete an auto monitor setup by external ID",
+            "description": {
+              "content": "Delete an auto monitor setup by its external ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "auto-monitor-setups",
+                ":external_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) Auto monitor setup external ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec0403a6-1f78-4b95-ac1e-d36321f38ce8",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d42fcb5-fd0c-44f3-acb3-0db220c97c06",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15cb306f-df67-4f81-ab85-2e50e834cc96",
+              "name": "Internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fe70baa-7dff-46aa-8f97-75c4afbcad8d",
+          "name": "Get an auto monitor setup by external ID",
+          "request": {
+            "name": "Get an auto monitor setup by external ID",
+            "description": {
+              "content": "Get a specific auto monitor setup by its external ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "auto-monitor-setups",
+                ":external_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) Auto monitor setup external ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76a434ce-a0b8-43cc-9c08-1e88c508c176",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"env_project_id\": \"string\",\n  \"evaluators\": [\n    {\n      \"binding_id\": \"string\",\n      \"error_message\": \"string\",\n      \"evaluator_id\": \"string\",\n      \"evaluator_type\": \"string\",\n      \"input_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"float\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"enum\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"output_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"int\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"float\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"processed_at\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"binding_id\": \"string\",\n      \"error_message\": \"string\",\n      \"evaluator_id\": \"string\",\n      \"evaluator_type\": \"string\",\n      \"input_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"enum\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"output_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"int\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"int\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"processed_at\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"external_id\": \"string\",\n  \"id\": \"string\",\n  \"init_rules\": [\n    {\n      \"key\": \"string\",\n      \"op\": \"contains\",\n      \"source\": \"string\",\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"op\": \"contains\",\n      \"source\": \"string\",\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    }\n  ],\n  \"org_id\": \"string\",\n  \"project_id\": \"string\",\n  \"status\": \"string\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5477ce3c-bf3e-4472-af16-4e3e95976552",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fefcbe30-5553-4be7-97c6-9b5344a8f7e9",
+              "name": "Internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d531e3fa-96f1-43a8-a44b-11c8147c5dc2",
+          "name": "Update an auto monitor setup by external ID",
+          "request": {
+            "name": "Update an auto monitor setup by external ID",
+            "description": {
+              "content": "Update an existing auto monitor setup by its external ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "auto-monitor-setups",
+                ":external_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) Auto monitor setup external ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"evaluators\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"selector\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15459956-6d8c-4fda-9c7a-4ff66f0128a9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"evaluators\": [\n    \"hallucination\",\n    \"toxicity\"\n  ],\n  \"selector\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"env_project_id\": \"string\",\n  \"evaluators\": [\n    {\n      \"binding_id\": \"string\",\n      \"error_message\": \"string\",\n      \"evaluator_id\": \"string\",\n      \"evaluator_type\": \"string\",\n      \"input_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"float\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"enum\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"output_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"int\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"float\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"processed_at\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"binding_id\": \"string\",\n      \"error_message\": \"string\",\n      \"evaluator_id\": \"string\",\n      \"evaluator_type\": \"string\",\n      \"input_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"enum\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"output_schema\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"int\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"int\",\n          \"description\": \"string\",\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"processed_at\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"external_id\": \"string\",\n  \"id\": \"string\",\n  \"init_rules\": [\n    {\n      \"key\": \"string\",\n      \"op\": \"contains\",\n      \"source\": \"string\",\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"op\": \"contains\",\n      \"source\": \"string\",\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    }\n  ],\n  \"org_id\": \"string\",\n  \"project_id\": \"string\",\n  \"status\": \"string\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f68c5c3-ddb8-46b0-877a-db876b286f03",
+              "name": "Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"evaluators\": [\n    \"hallucination\",\n    \"toxicity\"\n  ],\n  \"selector\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2f2657b-5a2d-48a3-8b10-698d0ad1deec",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"evaluators\": [\n    \"hallucination\",\n    \"toxicity\"\n  ],\n  \"selector\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b93c531-c783-42a2-92ab-d5a5e0d37e65",
+              "name": "Internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auto-monitor-setups",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Auto monitor setup external ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"evaluators\": [\n    \"hallucination\",\n    \"toxicity\"\n  ],\n  \"selector\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.traceloop.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c8970516-37fa-483c-b663-79381640a21c",
+    "name": "Traceloop auto-monitor-setups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
