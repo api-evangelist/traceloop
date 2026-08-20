@@ -38,6 +38,15 @@ tags:
   - Evaluation
   - LLM Gateway
   - Prompt Management
+  - Machine-Learning
+tags_raw:
+  - LLM Observability
+  - OpenTelemetry
+  - AI Monitoring
+  - Tracing
+  - Evaluation
+  - LLM Gateway
+  - Prompt Management
   - Machine Learning
 apis:
 - aid: traceloop:traceloop-auto-monitor-setups-api
@@ -66,6 +75,8 @@ apis:
   humanURL: https://www.traceloop.com/docs/api-reference/introduction
   baseURL: https://api.traceloop.com
   tags:
+  - Evaluators
+  tags_raw:
   - evaluators
   properties:
   - type: OpenAPI
@@ -86,6 +97,8 @@ apis:
   humanURL: https://www.traceloop.com/docs/api-reference/introduction
   baseURL: https://api.traceloop.com
   tags:
+  - Metrics
+  tags_raw:
   - metrics
   properties:
   - type: OpenAPI
@@ -106,6 +119,8 @@ apis:
   humanURL: https://www.traceloop.com/docs/api-reference/introduction
   baseURL: https://api.traceloop.com
   tags:
+  - Organization
+  tags_raw:
   - organizations
   properties:
   - type: OpenAPI
