@@ -1,10 +1,7 @@
 {
   "provider": "traceloop",
   "sources": [
-    "traceloop-auto-monitor-setups-api-openapi.yml",
-    "traceloop-evaluators-api-openapi.yml",
-    "traceloop-metrics-api-openapi.yml",
-    "traceloop-organizations-api-openapi.yml"
+    "_original/traceloop-rest-api-openapi.yml"
   ],
   "outputs": [
     "traceloop-auto-monitor-setups-api-openapi.yml",
@@ -15,6 +12,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "traceloop-rest-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "traceloop-rest-api-openapi.yml: declared missing tag: auto-monitor-setups",
+    "traceloop-rest-api-openapi.yml: declared missing tag: evaluators",
+    "traceloop-rest-api-openapi.yml: declared missing tag: metrics",
+    "traceloop-rest-api-openapi.yml: declared missing tag: organizations",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "traceloop-auto-monitor-setups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traceloop-evaluators-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traceloop-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traceloop-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

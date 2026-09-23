@@ -1,12 +1,12 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Traceloop auto-monitor-setups metrics API
+  title: Traceloop Metrics API
   version: 1.0.0
   contact: {}
 servers:
 - url: https://api.traceloop.com
 tags:
-- name: metrics
+- name: Metrics
 paths:
   /v2/metrics:
     post:
@@ -46,7 +46,7 @@ paths:
                 $ref: '#/components/schemas/response.ErrorResponse'
       summary: Get metrics with filtering and grouping
       tags:
-      - metrics
+      - Metrics
   /v2/metrics_hwm:
     get:
       description: Returns the timestamp of the last successfully processed evaluation (high water mark)
@@ -66,20 +66,56 @@ paths:
                 $ref: '#/components/schemas/response.ErrorResponse'
       summary: Get metrics high water mark
       tags:
-      - metrics
+      - Metrics
 components:
   schemas:
-    response.ErrorResponse:
-      description: Standard error response structure
+    response.MetricPoint:
+      description: 'A single metric data point. The `unit` field in `labels` indicates the data type and determines which value field is populated: `bool_value` for booleans unitless, `numeric_value` for number units, or `enum_value` for strings.'
       properties:
-        error:
-          example: error message
+        bool_value:
+          type: boolean
+        enum_value:
           type: string
+        numeric_value:
+          type: number
+        event_time:
+          type: integer
+        labels:
+          description: The labels are the attributes of the metric point. The labels are key-value pairs that are used to identify the metric point.
+          example:
+            agent_name: Travel Planner Agent
+            entity_type: span
+            env_project_id: '1111'
+            environment: dev
+            evaluator_name: ''
+            insert_time: '1772616490000'
+            metric_source: word_count
+            metric_type: numeric
+            model: gpt-4o-2024-08-06
+            org_id: '12345'
+            run_id: '54321'
+            service_name: travel-agent-demo
+            span_id: e118a1985c9cff23
+            trace_id: 2c98a42d1225cb786f3395d97ca3014d
+            unit: words
+            vendor: openai
+          additionalProperties:
+            type: string
+          type: object
       type: object
-    response.GetMetricsResponse:
+    response.MetricGroup:
       properties:
-        metrics:
-          $ref: '#/components/schemas/response.PaginatedMetricsResponse'
+        metric_name:
+          type: string
+          description: Metric name.
+          example: answer relevancy
+        organization_id:
+          type: string
+        points:
+          items:
+            $ref: '#/components/schemas/response.MetricPoint'
+          type: array
+          description: 'List of data points for this metric. The `unit` field in each point''s `labels` indicates the data type and determines which value field is populated: `bool_value` for booleans, `numeric_value` for numbers, or `enum_value` for strings.'
       type: object
     request.GetMetricsRequest:
       properties:
@@ -131,19 +167,17 @@ components:
           description: Sort order.
           example: ASC
       type: object
-    response.MetricGroup:
+    response.ErrorResponse:
+      description: Standard error response structure
       properties:
-        metric_name:
+        error:
+          example: error message
           type: string
-          description: Metric name.
-          example: answer relevancy
-        organization_id:
-          type: string
-        points:
-          items:
-            $ref: '#/components/schemas/response.MetricPoint'
-          type: array
-          description: 'List of data points for this metric. The `unit` field in each point''s `labels` indicates the data type and determines which value field is populated: `bool_value` for booleans, `numeric_value` for numbers, or `enum_value` for strings.'
+      type: object
+    response.MetricsHWMResponse:
+      properties:
+        high_water_mark:
+          type: integer
       type: object
     types.LogicalOperator:
       enum:
@@ -183,44 +217,10 @@ components:
           - Travel Planner Agent
           - Calendar Planner Agent
       type: object
-    response.MetricPoint:
-      description: 'A single metric data point. The `unit` field in `labels` indicates the data type and determines which value field is populated: `bool_value` for booleans unitless, `numeric_value` for number units, or `enum_value` for strings.'
+    response.GetMetricsResponse:
       properties:
-        bool_value:
-          type: boolean
-        enum_value:
-          type: string
-        numeric_value:
-          type: number
-        event_time:
-          type: integer
-        labels:
-          description: The labels are the attributes of the metric point. The labels are key-value pairs that are used to identify the metric point.
-          example:
-            agent_name: Travel Planner Agent
-            entity_type: span
-            env_project_id: '1111'
-            environment: dev
-            evaluator_name: ''
-            insert_time: '1772616490000'
-            metric_source: word_count
-            metric_type: numeric
-            model: gpt-4o-2024-08-06
-            org_id: '12345'
-            run_id: '54321'
-            service_name: travel-agent-demo
-            span_id: e118a1985c9cff23
-            trace_id: 2c98a42d1225cb786f3395d97ca3014d
-            unit: words
-            vendor: openai
-          additionalProperties:
-            type: string
-          type: object
-      type: object
-    response.MetricsHWMResponse:
-      properties:
-        high_water_mark:
-          type: integer
+        metrics:
+          $ref: '#/components/schemas/response.PaginatedMetricsResponse'
       type: object
     response.PaginatedMetricsResponse:
       properties:
