@@ -51,7 +51,7 @@ tags:
   - Evaluation
   - LLM Gateway
   - Prompt Management
-  - Machine-Learning
+  - Machine Learning
 tags_raw:
   - LLM Observability
   - OpenTelemetry
@@ -61,9 +61,10 @@ tags_raw:
   - LLM Gateway
   - Prompt Management
   - Machine Learning
+  - Machine-Learning
 apis:
 - aid: traceloop:traceloop-auto-monitor-setups-api
-  name: Traceloop auto-monitor-setups API
+  name: Traceloop Auto Monitor Setups API
   description: The auto-monitor-setups API from Traceloop — 2 operation(s) for auto-monitor-setups.
   humanURL: https://www.traceloop.com/docs/api-reference/introduction
   baseURL: https://api.traceloop.com
@@ -83,7 +84,7 @@ apis:
   - type: JSONLDContext
     url: json-ld/traceloop-context.jsonld
 - aid: traceloop:traceloop-evaluators-api
-  name: Traceloop evaluators API
+  name: Traceloop Evaluators API
   description: The evaluators API from Traceloop — 36 operation(s) for evaluators.
   humanURL: https://www.traceloop.com/docs/api-reference/introduction
   baseURL: https://api.traceloop.com
@@ -105,7 +106,7 @@ apis:
   - type: JSONLDContext
     url: json-ld/traceloop-context.jsonld
 - aid: traceloop:traceloop-metrics-api
-  name: Traceloop metrics API
+  name: Traceloop Metrics API
   description: The metrics API from Traceloop — 2 operation(s) for metrics.
   humanURL: https://www.traceloop.com/docs/api-reference/introduction
   baseURL: https://api.traceloop.com
@@ -127,7 +128,7 @@ apis:
   - type: JSONLDContext
     url: json-ld/traceloop-context.jsonld
 - aid: traceloop:traceloop-organizations-api
-  name: Traceloop organizations API
+  name: Traceloop Organizations API
   description: The organizations API from Traceloop — 1 operation(s) for organizations.
   humanURL: https://www.traceloop.com/docs/api-reference/introduction
   baseURL: https://api.traceloop.com

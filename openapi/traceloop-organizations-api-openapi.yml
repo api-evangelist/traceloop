@@ -57,6 +57,15 @@ components:
           example: error message
           type: string
       type: object
+    response.CreateOrganizationResponse:
+      properties:
+        environments:
+          items:
+            $ref: '#/components/schemas/response.EnvironmentWithKeyResponse'
+          type: array
+        org_id:
+          type: string
+      type: object
     response.EnvironmentWithKeyResponse:
       properties:
         api_key:
@@ -80,15 +89,6 @@ components:
           default: 720
       required:
       - org_name
-      type: object
-    response.CreateOrganizationResponse:
-      properties:
-        environments:
-          items:
-            $ref: '#/components/schemas/response.EnvironmentWithKeyResponse'
-          type: array
-        org_id:
-          type: string
       type: object
   securitySchemes:
     BearerAuth:

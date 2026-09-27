@@ -202,53 +202,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    evaluator.Property:
+    types.Rule:
       properties:
-        description:
+        key:
           type: string
-        enum_values:
-          description: The allowed values for this property. Only applicable when `type` is `enum`.
-          items:
-            type: string
-          type: array
-        label:
+        op:
+          $ref: '#/components/schemas/types.ComparisonOperator'
+        source:
           type: string
-        name:
+        value:
           type: string
-        type:
-          $ref: '#/components/schemas/evaluator.PropertyType'
-      required:
-      - name
-      - type
-      type: object
-    response.ErrorResponse:
-      description: Standard error response structure
-      properties:
-        error:
-          example: error message
-          type: string
-      type: object
-    response.AutoMonitorEvaluatorResponse:
-      properties:
-        binding_id:
-          type: string
-        error_message:
-          type: string
-        evaluator_id:
-          type: string
-        evaluator_type:
-          type: string
-        input_schema:
-          items:
-            $ref: '#/components/schemas/evaluator.Property'
-          type: array
-        output_schema:
-          items:
-            $ref: '#/components/schemas/evaluator.Property'
-          type: array
-        processed_at:
-          type: string
-        status:
+        value_type:
           type: string
       type: object
     request.CreateAutoMonitorSetupInput:
@@ -279,6 +243,29 @@ components:
       - evaluators
       - external_id
       type: object
+    response.AutoMonitorEvaluatorResponse:
+      properties:
+        binding_id:
+          type: string
+        error_message:
+          type: string
+        evaluator_id:
+          type: string
+        evaluator_type:
+          type: string
+        input_schema:
+          items:
+            $ref: '#/components/schemas/evaluator.Property'
+          type: array
+        output_schema:
+          items:
+            $ref: '#/components/schemas/evaluator.Property'
+          type: array
+        processed_at:
+          type: string
+        status:
+          type: string
+      type: object
     response.AutoMonitorSetupResponse:
       properties:
         created_at:
@@ -306,6 +293,20 @@ components:
         updated_at:
           type: string
       type: object
+    evaluator.PropertyType:
+      enum:
+      - string
+      - int
+      - float
+      - boolean
+      - enum
+      type: string
+      x-enum-varnames:
+      - StringType
+      - IntType
+      - FloatType
+      - BooleanType
+      - EnumType
     types.ComparisonOperator:
       enum:
       - equals
@@ -342,33 +343,32 @@ components:
             Example: {"gen_ai.system": "openai", "gen_ai.request.model": "gpt-4o", "gen_ai.request.max_tokens": 1000}'
           type: object
       type: object
-    types.Rule:
+    response.ErrorResponse:
+      description: Standard error response structure
       properties:
-        key:
-          type: string
-        op:
-          $ref: '#/components/schemas/types.ComparisonOperator'
-        source:
-          type: string
-        value:
-          type: string
-        value_type:
+        error:
+          example: error message
           type: string
       type: object
-    evaluator.PropertyType:
-      enum:
-      - string
-      - int
-      - float
-      - boolean
-      - enum
-      type: string
-      x-enum-varnames:
-      - StringType
-      - IntType
-      - FloatType
-      - BooleanType
-      - EnumType
+    evaluator.Property:
+      properties:
+        description:
+          type: string
+        enum_values:
+          description: The allowed values for this property. Only applicable when `type` is `enum`.
+          items:
+            type: string
+          type: array
+        label:
+          type: string
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/evaluator.PropertyType'
+      required:
+      - name
+      - type
+      type: object
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.
