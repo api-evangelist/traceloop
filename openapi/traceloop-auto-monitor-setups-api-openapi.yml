@@ -215,34 +215,6 @@ components:
         value_type:
           type: string
       type: object
-    request.CreateAutoMonitorSetupInput:
-      properties:
-        evaluators:
-          description: List of evaluator slugs to run on matched spans
-          example:
-          - hallucination
-          - toxicity
-          items:
-            type: string
-          minItems: 1
-          type: array
-        external_id:
-          description: Unique identifier for the auto monitor setup, used to reference it in future requests
-          example: my-agent-monitor-1
-          type: string
-        selector:
-          description: 'Map of span attributes to filter which spans this monitor applies to.
-
-            Keys are span attribute names (e.g. gen_ai.system, gen_ai.request.model) and
-
-            values can be strings, numbers, or booleans.
-
-            Example: {"gen_ai.system": "openai", "gen_ai.request.model": "gpt-4o", "gen_ai.request.max_tokens": 1000}'
-          type: object
-      required:
-      - evaluators
-      - external_id
-      type: object
     response.AutoMonitorEvaluatorResponse:
       properties:
         binding_id:
@@ -264,6 +236,33 @@ components:
         processed_at:
           type: string
         status:
+          type: string
+      type: object
+    request.UpdateAutoMonitorSetupInput:
+      properties:
+        evaluators:
+          description: List of evaluator slugs to run on matched spans
+          example:
+          - hallucination
+          - toxicity
+          items:
+            type: string
+          type: array
+        selector:
+          description: 'Map of span attributes to filter which spans this monitor applies to.
+
+            Keys are span attribute names (e.g. gen_ai.system, gen_ai.request.model) and
+
+            values can be strings, numbers, or booleans.
+
+            Example: {"gen_ai.system": "openai", "gen_ai.request.model": "gpt-4o", "gen_ai.request.max_tokens": 1000}'
+          type: object
+      type: object
+    response.ErrorResponse:
+      description: Standard error response structure
+      properties:
+        error:
+          example: error message
           type: string
       type: object
     response.AutoMonitorSetupResponse:
@@ -293,20 +292,6 @@ components:
         updated_at:
           type: string
       type: object
-    evaluator.PropertyType:
-      enum:
-      - string
-      - int
-      - float
-      - boolean
-      - enum
-      type: string
-      x-enum-varnames:
-      - StringType
-      - IntType
-      - FloatType
-      - BooleanType
-      - EnumType
     types.ComparisonOperator:
       enum:
       - equals
@@ -323,33 +308,6 @@ components:
       - ComparisonOperatorNotContains
       - ComparisonOperatorIn
       - ComparisonOperatorNotIn
-    request.UpdateAutoMonitorSetupInput:
-      properties:
-        evaluators:
-          description: List of evaluator slugs to run on matched spans
-          example:
-          - hallucination
-          - toxicity
-          items:
-            type: string
-          type: array
-        selector:
-          description: 'Map of span attributes to filter which spans this monitor applies to.
-
-            Keys are span attribute names (e.g. gen_ai.system, gen_ai.request.model) and
-
-            values can be strings, numbers, or booleans.
-
-            Example: {"gen_ai.system": "openai", "gen_ai.request.model": "gpt-4o", "gen_ai.request.max_tokens": 1000}'
-          type: object
-      type: object
-    response.ErrorResponse:
-      description: Standard error response structure
-      properties:
-        error:
-          example: error message
-          type: string
-      type: object
     evaluator.Property:
       properties:
         description:
@@ -369,6 +327,48 @@ components:
       - name
       - type
       type: object
+    request.CreateAutoMonitorSetupInput:
+      properties:
+        evaluators:
+          description: List of evaluator slugs to run on matched spans
+          example:
+          - hallucination
+          - toxicity
+          items:
+            type: string
+          minItems: 1
+          type: array
+        external_id:
+          description: Unique identifier for the auto monitor setup, used to reference it in future requests
+          example: my-agent-monitor-1
+          type: string
+        selector:
+          description: 'Map of span attributes to filter which spans this monitor applies to.
+
+            Keys are span attribute names (e.g. gen_ai.system, gen_ai.request.model) and
+
+            values can be strings, numbers, or booleans.
+
+            Example: {"gen_ai.system": "openai", "gen_ai.request.model": "gpt-4o", "gen_ai.request.max_tokens": 1000}'
+          type: object
+      required:
+      - evaluators
+      - external_id
+      type: object
+    evaluator.PropertyType:
+      enum:
+      - string
+      - int
+      - float
+      - boolean
+      - enum
+      type: string
+      x-enum-varnames:
+      - StringType
+      - IntType
+      - FloatType
+      - BooleanType
+      - EnumType
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

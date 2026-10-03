@@ -1579,11 +1579,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    response.RegexValidatorResponse:
+    request.HtmlComparisonInput:
       properties:
-        is_valid_regex:
-          example: true
-          type: boolean
+        html1:
+          example: <html><body><h1>Hello, world!</h1></body></html>
+          type: string
+        html2:
+          example: <html><body><h1>Hello, world!</h1></body></html>
+          type: string
+      required:
+      - html1
+      - html2
+      type: object
+    request.AgentEfficiencyRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.AgentEfficiencyInput'
+      required:
+      - input
       type: object
     request.AgentGoalAccuracyRequest:
       properties:
@@ -1598,576 +1611,27 @@ components:
           example: 0.8
           type: number
       type: object
-    request.SecretsDetectorInput:
-      properties:
-        text:
-          example: Here is some text without any API keys or passwords.
-          type: string
-      required:
-      - text
-      type: object
-    request.HtmlComparisonInput:
-      properties:
-        html1:
-          example: <html><body><h1>Hello, world!</h1></body></html>
-          type: string
-        html2:
-          example: <html><body><h1>Hello, world!</h1></body></html>
-          type: string
-      required:
-      - html1
-      - html2
-      type: object
-    request.ToxicityDetectorConfigRequest:
-      properties:
-        threshold:
-          example: 0.5
-          type: number
-      type: object
-    response.PromptPerplexityResponse:
-      properties:
-        perplexity_score:
-          example: 8.3
-          type: number
-      type: object
-    request.AgentToolTrajectoryConfigRequest:
-      properties:
-        input_params_sensitive:
-          example: true
-          type: boolean
-        mismatch_sensitive:
-          example: false
-          type: boolean
-        order_sensitive:
-          example: false
-          type: boolean
-        threshold:
-          example: 0.5
-          type: number
-      type: object
-    request.ConversationQualityRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.ConversationQualityInput'
-      required:
-      - input
-      type: object
-    request.PromptInjectionRequest:
-      properties:
-        config:
-          $ref: '#/components/schemas/request.PromptInjectionConfigRequest'
-        input:
-          $ref: '#/components/schemas/request.PromptInjectionInput'
-      required:
-      - input
-      type: object
-    request.JSONValidatorConfigRequest:
-      properties:
-        enable_schema_validation:
-          example: true
-          type: boolean
-        schema_string:
-          example: '{}'
-          type: string
-      type: object
-    response.PerplexityResponse:
-      properties:
-        perplexity_score:
-          example: 12.5
-          type: number
-      type: object
-    request.SemanticSimilarityInput:
-      properties:
-        completion:
-          example: The cat sat on the mat.
-          type: string
-        reference:
-          example: A feline was resting on the rug.
-          type: string
-      required:
-      - completion
-      - reference
-      type: object
-    request.CharCountInput:
-      properties:
-        text:
-          example: Hello, world! This is a sample text.
-          type: string
-      required:
-      - text
-      type: object
-    request.ToneDetectionInput:
-      properties:
-        text:
-          example: The capital of France is Paris.
-          type: string
-      required:
-      - text
-      type: object
-    request.AnswerCompletenessRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.AnswerCompletenessInput'
-      required:
-      - input
-      type: object
-    response.AnswerCorrectnessResponse:
-      properties:
-        correctness_score:
-          example: 0.91
-          type: number
-      type: object
-    request.AgentGoalCompletenessInput:
-      properties:
-        trajectory_completions:
-          example: '["Account created", "Preferences saved", "Notifications enabled"]'
-          type: string
-        trajectory_prompts:
-          example: '["Create new account", "Set preferences", "Enable notifications"]'
-          type: string
-      required:
-      - trajectory_completions
-      - trajectory_prompts
-      type: object
-    request.CharCountRatioInput:
-      properties:
-        denominator_text:
-          example: This is a longer text for comparison
-          type: string
-        numerator_text:
-          example: Short text
-          type: string
-      required:
-      - denominator_text
-      - numerator_text
-      type: object
-    request.SQLValidatorInput:
-      properties:
-        text:
-          example: SELECT * FROM users WHERE id = 1;
-          type: string
-      required:
-      - text
-      type: object
-    request.ProfanityDetectorRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.ProfanityDetectorInput'
-      required:
-      - input
-      type: object
-    request.HtmlComparisonRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.HtmlComparisonInput'
-      required:
-      - input
-      type: object
-    evaluator.Property:
-      properties:
-        description:
-          type: string
-        enum_values:
-          description: The allowed values for this property. Only applicable when `type` is `enum`.
-          items:
-            type: string
-          type: array
-        label:
-          type: string
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/evaluator.PropertyType'
-      required:
-      - name
-      - type
-      type: object
-    request.CharCountRatioRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.CharCountRatioInput'
-      required:
-      - input
-      type: object
-    response.ProfanityDetectorResponse:
-      properties:
-        is_safe:
-          example: false
-          type: boolean
-      type: object
-    request.FaithfulnessRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.FaithfulnessInput'
-      required:
-      - input
-      type: object
-    response.AgentEfficiencyResponse:
-      properties:
-        step_efficiency_reason:
-          example: Agent completed task with minimal redundant steps
-          type: string
-        step_efficiency_score:
-          example: 0.85
-          type: number
-        task_completion_reason:
-          example: All required tasks were completed successfully
-          type: string
-        task_completion_score:
-          example: 0.92
-          type: number
-      type: object
-    response.CreateEvaluatorResponse:
-      properties:
-        bindings:
-          items:
-            type: string
-          type: array
-        evaluator_id:
-          type: string
-        slug:
-          type: string
-        type:
-          $ref: '#/components/schemas/types.EvaluatorType'
-        version_id:
-          type: string
-      type: object
-    response.PromptInjectionResponse:
-      properties:
-        has_injection:
-          example: false
-          type: boolean
-      type: object
-    response.CharCountResponse:
-      properties:
-        char_count:
-          example: 42
-          type: integer
-      type: object
-    request.ToxicityDetectorInput:
-      properties:
-        text:
-          example: Thank you for your help with this project.
-          type: string
-      required:
-      - text
-      type: object
     response.CharCountRatioResponse:
       properties:
         char_ratio:
           example: 0.75
           type: number
       type: object
-    request.CharCountRequest:
+    response.ErrorResponse:
+      description: Standard error response structure
       properties:
-        input:
-          $ref: '#/components/schemas/request.CharCountInput'
-      required:
-      - input
-      type: object
-    request.SexismDetectorConfigRequest:
-      properties:
-        threshold:
-          example: 0.5
-          type: number
-      type: object
-    request.AnswerRelevancyInput:
-      properties:
-        answer:
-          example: The capital of France is Paris.
+        error:
+          example: error message
           type: string
-        question:
-          example: What is the capital of France?
-          type: string
-      required:
-      - answer
-      - question
       type: object
-    request.JSONValidatorInput:
-      properties:
-        text:
-          example: '{"name": "John", "age": 30}'
-          type: string
-      required:
-      - text
-      type: object
-    request.AgentEfficiencyRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.AgentEfficiencyInput'
-      required:
-      - input
-      type: object
-    request.AgentToolErrorDetectorInput:
-      properties:
-        tool_input:
-          example: '{"action": "search", "query": "flights to Paris"}'
-          type: string
-        tool_output:
-          example: '{"status": "success", "results": [{"flight": "AF123", "price": 450}]}'
-          type: string
-      required:
-      - tool_input
-      - tool_output
-      type: object
-    request.WordCountRatioInput:
-      properties:
-        denominator_text:
-          example: This is a longer input text for comparison
-          type: string
-        numerator_text:
-          example: Short response
-          type: string
-      required:
-      - denominator_text
-      - numerator_text
-      type: object
-    response.AgentGoalCompletenessResponse:
-      properties:
-        reason:
-          example: All user goals were accomplished
-          type: string
-        score:
-          example: 0.95
-          type: number
-        success:
-          example: true
-          type: boolean
-      type: object
-    request.AgentFlowQualityInput:
-      properties:
-        trajectory_completions:
-          example: '["Found 5 flights", "Selected $299 flight", "Booking confirmed"]'
-          type: string
-        trajectory_prompts:
-          example: '["Search for flights", "Select the cheapest option", "Confirm booking"]'
-          type: string
-      required:
-      - trajectory_completions
-      - trajectory_prompts
-      type: object
-    request.SemanticSimilarityRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.SemanticSimilarityInput'
-      required:
-      - input
-      type: object
-    request.AgentToolTrajectoryRequest:
+    request.JSONValidatorRequest:
       properties:
         config:
-          $ref: '#/components/schemas/request.AgentToolTrajectoryConfigRequest'
+          $ref: '#/components/schemas/request.JSONValidatorConfigRequest'
         input:
-          $ref: '#/components/schemas/request.AgentToolTrajectoryInput'
+          $ref: '#/components/schemas/request.JSONValidatorInput'
       required:
       - input
-      type: object
-    response.AgentGoalAccuracyResponse:
-      properties:
-        accuracy_score:
-          example: 0.88
-          type: number
-      type: object
-    request.InstructionAdherenceRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.InstructionAdherenceInput'
-      required:
-      - input
-      type: object
-    request.ProfanityDetectorInput:
-      properties:
-        text:
-          example: This is a clean and professional message.
-          type: string
-      required:
-      - text
-      type: object
-    request.AnswerCorrectnessRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.AnswerCorrectnessInput'
-      required:
-      - input
-      type: object
-    response.SemanticSimilarityResponse:
-      properties:
-        similarity_score:
-          example: 0.92
-          type: number
-      type: object
-    request.PromptPerplexityRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.PromptPerplexityInput'
-      required:
-      - input
-      type: object
-    request.AnswerCorrectnessInput:
-      properties:
-        completion:
-          example: World War II ended in 1945.
-          type: string
-        ground_truth:
-          example: '1945'
-          type: string
-        question:
-          example: What year did World War II end?
-          type: string
-      required:
-      - completion
-      - ground_truth
-      - question
-      type: object
-    request.UncertaintyDetectorInput:
-      properties:
-        prompt:
-          example: I am not sure, I think the capital of France is Paris.
-          type: string
-      required:
-      - prompt
-      type: object
-    response.SQLValidatorResponse:
-      properties:
-        is_valid_sql:
-          example: true
-          type: boolean
-      type: object
-    response.ConversationQualityResponse:
-      properties:
-        conversation_quality_score:
-          example: 0.82
-          type: number
-      type: object
-    response.AgentToolErrorDetectorResponse:
-      properties:
-        reason:
-          example: Tool executed successfully without errors
-          type: string
-        success:
-          example: true
-          type: boolean
-      type: object
-    request.PlaceholderRegexInput:
-      properties:
-        placeholder_name:
-          example: name
-          type: string
-        placeholder_value:
-          example: Hello ${name}
-          type: string
-        text:
-          example: Hello John Doe
-          type: string
-      required:
-      - placeholder_name
-      - placeholder_value
-      - text
-      type: object
-    request.PIIDetectorInput:
-      properties:
-        text:
-          example: Please contact John Smith at john.smith@email.com or call 555-123-4567.
-          type: string
-      required:
-      - text
-      type: object
-    request.IntentChangeInput:
-      properties:
-        completions:
-          example: '["Sure, I can help with hotel booking", "No problem, let me search for flights"]'
-          type: string
-        prompts:
-          example: '["I want to book a hotel", "Actually, I need a flight instead"]'
-          type: string
-      required:
-      - completions
-      - prompts
-      type: object
-    request.PIIDetectorRequest:
-      properties:
-        config:
-          $ref: '#/components/schemas/request.PIIDetectorConfigRequest'
-        input:
-          $ref: '#/components/schemas/request.PIIDetectorInput'
-      required:
-      - input
-      type: object
-    response.ToneDetectionResponse:
-      properties:
-        score:
-          example: 0.95
-          type: number
-        tone:
-          example: neutral
-          type: string
-      type: object
-    request.WordCountInput:
-      properties:
-        text:
-          example: This is a sample text with several words.
-          type: string
-      required:
-      - text
-      type: object
-    request.TopicAdherenceRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.TopicAdherenceInput'
-      required:
-      - input
-      type: object
-    response.JSONValidatorResponse:
-      properties:
-        is_valid_json:
-          example: true
-          type: boolean
-      type: object
-    request.InstructionAdherenceInput:
-      properties:
-        instructions:
-          example: Respond in exactly 3 bullet points and use formal language.
-          type: string
-        response:
-          example: '- First point about the topic
-
-            - Second relevant consideration
-
-            - Final concluding thought'
-          type: string
-      required:
-      - instructions
-      - response
-      type: object
-    request.PromptInjectionInput:
-      properties:
-        prompt:
-          example: What is the weather like today?
-          type: string
-      required:
-      - prompt
-      type: object
-    response.ToxicityDetectorResponse:
-      properties:
-        is_safe:
-          example: false
-          type: boolean
-      type: object
-    request.TopicAdherenceInput:
-      properties:
-        completion:
-          example: Machine learning is a subset of AI that enables systems to learn from data.
-          type: string
-        question:
-          example: Tell me about machine learning
-          type: string
-        reference_topics:
-          example: artificial intelligence, data science, algorithms
-          type: string
-      required:
-      - completion
-      - question
-      - reference_topics
       type: object
     response.AgentToolTrajectoryResponse:
       properties:
@@ -2181,120 +1645,6 @@ components:
           example: true
           type: boolean
       type: object
-    request.FaithfulnessInput:
-      properties:
-        completion:
-          example: The Eiffel Tower is located in Paris and was built in 1889.
-          type: string
-        context:
-          example: The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889.
-          type: string
-        question:
-          example: When was the Eiffel Tower built?
-          type: string
-      required:
-      - completion
-      - context
-      - question
-      type: object
-    response.ErrorResponse:
-      description: Standard error response structure
-      properties:
-        error:
-          example: error message
-          type: string
-      type: object
-    request.ContextRelevanceConfigRequest:
-      properties:
-        model:
-          example: gpt-4o
-          type: string
-      type: object
-    request.AgentToolErrorDetectorRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.AgentToolErrorDetectorInput'
-      required:
-      - input
-      type: object
-    request.ToxicityDetectorRequest:
-      properties:
-        config:
-          $ref: '#/components/schemas/request.ToxicityDetectorConfigRequest'
-        input:
-          $ref: '#/components/schemas/request.ToxicityDetectorInput'
-      required:
-      - input
-      type: object
-    response.PlaceholderRegexResponse:
-      properties:
-        is_valid_regex:
-          example: true
-          type: boolean
-      type: object
-    request.AgentGoalCompletenessRequest:
-      properties:
-        config:
-          $ref: '#/components/schemas/request.AgentGoalCompletenessConfigRequest'
-        input:
-          $ref: '#/components/schemas/request.AgentGoalCompletenessInput'
-      required:
-      - input
-      type: object
-    request.AgentGoalCompletenessConfigRequest:
-      properties:
-        threshold:
-          example: 0.5
-          type: number
-      required:
-      - threshold
-      type: object
-    request.ContextRelevanceInput:
-      properties:
-        completion:
-          example: Our store is open Monday to Friday from 9am to 6pm, and Saturday from 10am to 4pm. We are closed on Sundays.
-          type: string
-        context:
-          example: Our store is open Monday to Friday from 9am to 6pm, and Saturday from 10am to 4pm. We are closed on Sundays.
-          type: string
-        query:
-          example: What are the business hours?
-          type: string
-      required:
-      - completion
-      - context
-      - query
-      type: object
-    request.PerplexityRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.PerplexityInput'
-      required:
-      - input
-      type: object
-    request.ToneDetectionRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.ToneDetectionInput'
-      required:
-      - input
-      type: object
-    request.ContextRelevanceRequest:
-      properties:
-        config:
-          $ref: '#/components/schemas/request.ContextRelevanceConfigRequest'
-        input:
-          $ref: '#/components/schemas/request.ContextRelevanceInput'
-      required:
-      - input
-      type: object
-    request.WordCountRatioRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.WordCountRatioInput'
-      required:
-      - input
-      type: object
     request.AgentFlowQualityRequest:
       properties:
         config:
@@ -2305,171 +1655,17 @@ components:
       - config
       - input
       type: object
-    request.AgentGoalAccuracyInput:
-      properties:
-        completion:
-          example: I have booked your flight from New York to Los Angeles departing Monday at 9am.
-          type: string
-        question:
-          example: Book a flight from NYC to LA for next Monday
-          type: string
-        reference:
-          example: 'Flight booked: NYC to LA, Monday departure'
-          type: string
-      required:
-      - completion
-      - question
-      - reference
-      type: object
-    request.SecretsDetectorRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.SecretsDetectorInput'
-      required:
-      - input
-      type: object
-    request.RegexValidatorRequest:
-      properties:
-        config:
-          $ref: '#/components/schemas/request.RegexValidatorConfigRequest'
-        input:
-          $ref: '#/components/schemas/request.RegexValidatorInput'
-      required:
-      - input
-      type: object
-    response.AnswerRelevancyResponse:
-      properties:
-        is_relevant:
-          example: true
-          type: boolean
-      type: object
-    response.InstructionAdherenceResponse:
-      properties:
-        instruction_adherence_score:
-          example: 0.87
-          type: number
-      type: object
-    response.PIIDetectorResponse:
-      properties:
-        has_pii:
-          example: false
-          type: boolean
-      type: object
-    request.WordCountRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.WordCountInput'
-      required:
-      - input
-      type: object
-    request.IntentChangeRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.IntentChangeInput'
-      required:
-      - input
-      type: object
-    request.UncertaintyDetectorRequest:
-      properties:
-        input:
-          $ref: '#/components/schemas/request.UncertaintyDetectorInput'
-      required:
-      - input
-      type: object
-    response.WordCountRatioResponse:
-      properties:
-        word_ratio:
-          example: 0.85
-          type: number
-      type: object
-    evaluator.PropertyType:
-      enum:
-      - string
-      - int
-      - float
-      - boolean
-      - enum
-      type: string
-      x-enum-varnames:
-      - StringType
-      - IntType
-      - FloatType
-      - BooleanType
-      - EnumType
-    request.RegexValidatorInput:
-      properties:
-        text:
-          example: user@example.com
-          type: string
-      required:
-      - text
-      type: object
-    model.LLMMessage:
-      properties:
-        content:
-          type: string
-        role:
-          type: string
-        tool_call_id:
-          type: string
-      type: object
-    request.SexismDetectorRequest:
-      properties:
-        config:
-          $ref: '#/components/schemas/request.SexismDetectorConfigRequest'
-        input:
-          $ref: '#/components/schemas/request.SexismDetectorInput'
-      required:
-      - input
-      type: object
-    response.FaithfulnessResponse:
-      properties:
-        is_faithful:
-          example: true
-          type: boolean
-      type: object
-    response.UncertaintyDetectorResponse:
-      properties:
-        answer:
-          example: Paris
-          type: string
-        uncertainty:
-          example: 0.95
-          type: number
-      type: object
     response.HtmlComparisonResponse:
       properties:
         similarity_score:
           example: 0.92
           type: number
       type: object
-    request.AnswerCompletenessInput:
+    response.JSONValidatorResponse:
       properties:
-        completion:
-          example: Paris.
-          type: string
-        context:
-          example: The capital of France is Paris.
-          type: string
-        question:
-          example: What is the capital of France?
-          type: string
-      required:
-      - completion
-      - context
-      - question
-      type: object
-    response.ContextRelevanceResponse:
-      properties:
-        relevance_score:
-          example: 0.88
-          type: number
-      type: object
-    response.WordCountResponse:
-      properties:
-        word_count:
-          example: 10
-          type: integer
+        is_valid_json:
+          example: true
+          type: boolean
       type: object
     request.AgentToolTrajectoryInput:
       properties:
@@ -2483,6 +1679,13 @@ components:
       - executed_tool_calls
       - expected_tool_calls
       type: object
+    request.TopicAdherenceRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.TopicAdherenceInput'
+      required:
+      - input
+      type: object
     request.SexismDetectorInput:
       properties:
         text:
@@ -2491,68 +1694,19 @@ components:
       required:
       - text
       type: object
-    request.PromptPerplexityInput:
+    response.SemanticSimilarityResponse:
       properties:
-        prompt:
-          example: What is the capital of France?
-          type: string
-      required:
-      - prompt
-      type: object
-    request.ConversationQualityInput:
-      properties:
-        completions:
-          example: '["Hi! I''d be happy to assist you today.", "We offer consulting, development, and support services."]'
-          type: string
-        prompts:
-          example: '["Hello, how can I help?", "What services do you offer?"]'
-          type: string
-      required:
-      - completions
-      - prompts
-      type: object
-    response.SexismDetectorResponse:
-      properties:
-        is_safe:
-          example: false
-          type: boolean
-      type: object
-    response.AgentFlowQualityResponse:
-      properties:
-        reason:
-          example: Agent followed the expected flow correctly
-          type: string
-        score:
-          example: 0.89
-          type: number
-        success:
-          example: true
-          type: boolean
-      type: object
-    request.AgentEfficiencyInput:
-      properties:
-        trajectory_completions:
-          example: '["User found", "Email updated", "Changes saved"]'
-          type: string
-        trajectory_prompts:
-          example: '["Find user info", "Update email", "Save changes"]'
-          type: string
-      required:
-      - trajectory_completions
-      - trajectory_prompts
-      type: object
-    response.AnswerCompletenessResponse:
-      properties:
-        answer_completeness_score:
-          example: 0.95
+        similarity_score:
+          example: 0.92
           type: number
       type: object
-    request.SQLValidatorRequest:
+    request.SecretsDetectorInput:
       properties:
-        input:
-          $ref: '#/components/schemas/request.SQLValidatorInput'
+        text:
+          example: Here is some text without any API keys or passwords.
+          type: string
       required:
-      - input
+      - text
       type: object
     request.AgentFlowQualityConfigRequest:
       properties:
@@ -2570,27 +1724,253 @@ components:
       - conditions
       - threshold
       type: object
-    request.PlaceholderRegexConfigRequest:
+    response.AgentGoalAccuracyResponse:
       properties:
-        case_sensitive:
+        accuracy_score:
+          example: 0.88
+          type: number
+      type: object
+    request.JSONValidatorConfigRequest:
+      properties:
+        enable_schema_validation:
           example: true
           type: boolean
-        dot_include_nl:
-          example: true
+        schema_string:
+          example: '{}'
+          type: string
+      type: object
+    request.SecretsDetectorRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.SecretsDetectorInput'
+      required:
+      - input
+      type: object
+    request.ProfanityDetectorRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.ProfanityDetectorInput'
+      required:
+      - input
+      type: object
+    response.WordCountRatioResponse:
+      properties:
+        word_ratio:
+          example: 0.85
+          type: number
+      type: object
+    request.PlaceholderRegexInput:
+      properties:
+        placeholder_name:
+          example: name
+          type: string
+        placeholder_value:
+          example: Hello ${name}
+          type: string
+        text:
+          example: Hello John Doe
+          type: string
+      required:
+      - placeholder_name
+      - placeholder_value
+      - text
+      type: object
+    request.AgentFlowQualityInput:
+      properties:
+        trajectory_completions:
+          example: '["Found 5 flights", "Selected $299 flight", "Booking confirmed"]'
+          type: string
+        trajectory_prompts:
+          example: '["Search for flights", "Select the cheapest option", "Confirm booking"]'
+          type: string
+      required:
+      - trajectory_completions
+      - trajectory_prompts
+      type: object
+    request.SQLValidatorRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.SQLValidatorInput'
+      required:
+      - input
+      type: object
+    response.ToxicityDetectorResponse:
+      properties:
+        is_safe:
+          example: false
           type: boolean
-        multi_line:
-          example: true
-          type: boolean
-        should_match:
+      type: object
+    request.InstructionAdherenceRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.InstructionAdherenceInput'
+      required:
+      - input
+      type: object
+    request.HtmlComparisonRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.HtmlComparisonInput'
+      required:
+      - input
+      type: object
+    request.IntentChangeInput:
+      properties:
+        completions:
+          example: '["Sure, I can help with hotel booking", "No problem, let me search for flights"]'
+          type: string
+        prompts:
+          example: '["I want to book a hotel", "Actually, I need a flight instead"]'
+          type: string
+      required:
+      - completions
+      - prompts
+      type: object
+    request.SexismDetectorConfigRequest:
+      properties:
+        threshold:
+          example: 0.5
+          type: number
+      type: object
+    request.PromptPerplexityRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.PromptPerplexityInput'
+      required:
+      - input
+      type: object
+    request.CharCountRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.CharCountInput'
+      required:
+      - input
+      type: object
+    request.SemanticSimilarityInput:
+      properties:
+        completion:
+          example: The cat sat on the mat.
+          type: string
+        reference:
+          example: A feline was resting on the rug.
+          type: string
+      required:
+      - completion
+      - reference
+      type: object
+    response.IntentChangeResponse:
+      properties:
+        reason:
+          example: User intent remained consistent throughout the conversation
+          type: string
+        score:
+          example: 1
+          type: integer
+        success:
           example: true
           type: boolean
       type: object
-    request.PlaceholderRegexRequest:
+    request.AnswerRelevancyInput:
       properties:
-        config:
-          $ref: '#/components/schemas/request.PlaceholderRegexConfigRequest'
+        answer:
+          example: The capital of France is Paris.
+          type: string
+        question:
+          example: What is the capital of France?
+          type: string
+      required:
+      - answer
+      - question
+      type: object
+    request.ContextRelevanceConfigRequest:
+      properties:
+        model:
+          example: gpt-4o
+          type: string
+      type: object
+    request.ToxicityDetectorInput:
+      properties:
+        text:
+          example: Thank you for your help with this project.
+          type: string
+      required:
+      - text
+      type: object
+    request.ContextRelevanceInput:
+      properties:
+        completion:
+          example: Our store is open Monday to Friday from 9am to 6pm, and Saturday from 10am to 4pm. We are closed on Sundays.
+          type: string
+        context:
+          example: Our store is open Monday to Friday from 9am to 6pm, and Saturday from 10am to 4pm. We are closed on Sundays.
+          type: string
+        query:
+          example: What are the business hours?
+          type: string
+      required:
+      - completion
+      - context
+      - query
+      type: object
+    response.SecretsDetectorResponse:
+      properties:
+        has_secret:
+          example: false
+          type: boolean
+      type: object
+    response.TopicAdherenceResponse:
+      properties:
+        adherence_score:
+          example: 0.95
+          type: number
+      type: object
+    request.PIIDetectorInput:
+      properties:
+        text:
+          example: Please contact John Smith at john.smith@email.com or call 555-123-4567.
+          type: string
+      required:
+      - text
+      type: object
+    request.AgentToolTrajectoryConfigRequest:
+      properties:
+        input_params_sensitive:
+          example: true
+          type: boolean
+        mismatch_sensitive:
+          example: false
+          type: boolean
+        order_sensitive:
+          example: false
+          type: boolean
+        threshold:
+          example: 0.5
+          type: number
+      type: object
+    request.ToxicityDetectorConfigRequest:
+      properties:
+        threshold:
+          example: 0.5
+          type: number
+      type: object
+    request.RegexValidatorInput:
+      properties:
+        text:
+          example: user@example.com
+          type: string
+      required:
+      - text
+      type: object
+    response.AnswerCorrectnessResponse:
+      properties:
+        correctness_score:
+          example: 0.91
+          type: number
+      type: object
+    request.SemanticSimilarityRequest:
+      properties:
         input:
-          $ref: '#/components/schemas/request.PlaceholderRegexInput'
+          $ref: '#/components/schemas/request.SemanticSimilarityInput'
       required:
       - input
       type: object
@@ -2670,53 +2050,76 @@ components:
       - AgentToolTrajectory
       - HtmlComparison
       - LLMAsAJudge
-    request.JSONValidatorRequest:
+    request.WordCountRatioInput:
+      properties:
+        denominator_text:
+          example: This is a longer input text for comparison
+          type: string
+        numerator_text:
+          example: Short response
+          type: string
+      required:
+      - denominator_text
+      - numerator_text
+      type: object
+    request.PromptInjectionRequest:
       properties:
         config:
-          $ref: '#/components/schemas/request.JSONValidatorConfigRequest'
+          $ref: '#/components/schemas/request.PromptInjectionConfigRequest'
         input:
-          $ref: '#/components/schemas/request.JSONValidatorInput'
+          $ref: '#/components/schemas/request.PromptInjectionInput'
       required:
       - input
       type: object
-    response.IntentChangeResponse:
+    request.AnswerRelevancyRequest:
       properties:
-        reason:
-          example: User intent remained consistent throughout the conversation
-          type: string
-        score:
-          example: 1
-          type: integer
-        success:
-          example: true
-          type: boolean
+        input:
+          $ref: '#/components/schemas/request.AnswerRelevancyInput'
+      required:
+      - input
       type: object
-    request.PerplexityInput:
+    request.AnswerCorrectnessRequest:
       properties:
-        logprobs:
-          example: '[-2.3, -1.5, -0.8, -1.2, -0.5]'
+        input:
+          $ref: '#/components/schemas/request.AnswerCorrectnessInput'
+      required:
+      - input
+      type: object
+    request.ContextRelevanceRequest:
+      properties:
+        config:
+          $ref: '#/components/schemas/request.ContextRelevanceConfigRequest'
+        input:
+          $ref: '#/components/schemas/request.ContextRelevanceInput'
+      required:
+      - input
+      type: object
+    request.AgentToolErrorDetectorInput:
+      properties:
+        tool_input:
+          example: '{"action": "search", "query": "flights to Paris"}'
+          type: string
+        tool_output:
+          example: '{"status": "success", "results": [{"flight": "AF123", "price": 450}]}'
           type: string
       required:
-      - logprobs
+      - tool_input
+      - tool_output
       type: object
-    request.RegexValidatorConfigRequest:
-      properties:
-        case_sensitive:
-          example: true
-          type: boolean
-        dot_include_nl:
-          example: true
-          type: boolean
-        multi_line:
-          example: true
-          type: boolean
-        regex:
-          example: .*
-          type: string
-        should_match:
-          example: true
-          type: boolean
-      type: object
+    evaluator.PropertyType:
+      enum:
+      - string
+      - int
+      - float
+      - boolean
+      - enum
+      type: string
+      x-enum-varnames:
+      - StringType
+      - IntType
+      - FloatType
+      - BooleanType
+      - EnumType
     request.CreateCustomEvaluatorInput:
       properties:
         description:
@@ -2772,16 +2175,446 @@ components:
       - output_schema
       - provider
       type: object
-    request.AnswerRelevancyRequest:
+    request.AgentEfficiencyInput:
+      properties:
+        trajectory_completions:
+          example: '["User found", "Email updated", "Changes saved"]'
+          type: string
+        trajectory_prompts:
+          example: '["Find user info", "Update email", "Save changes"]'
+          type: string
+      required:
+      - trajectory_completions
+      - trajectory_prompts
+      type: object
+    request.PromptInjectionInput:
+      properties:
+        prompt:
+          example: What is the weather like today?
+          type: string
+      required:
+      - prompt
+      type: object
+    request.ToneDetectionRequest:
       properties:
         input:
-          $ref: '#/components/schemas/request.AnswerRelevancyInput'
+          $ref: '#/components/schemas/request.ToneDetectionInput'
       required:
       - input
       type: object
-    response.SecretsDetectorResponse:
+    response.PromptInjectionResponse:
       properties:
-        has_secret:
+        has_injection:
+          example: false
+          type: boolean
+      type: object
+    request.AgentGoalAccuracyInput:
+      properties:
+        completion:
+          example: I have booked your flight from New York to Los Angeles departing Monday at 9am.
+          type: string
+        question:
+          example: Book a flight from NYC to LA for next Monday
+          type: string
+        reference:
+          example: 'Flight booked: NYC to LA, Monday departure'
+          type: string
+      required:
+      - completion
+      - question
+      - reference
+      type: object
+    response.CreateEvaluatorResponse:
+      properties:
+        bindings:
+          items:
+            type: string
+          type: array
+        evaluator_id:
+          type: string
+        slug:
+          type: string
+        type:
+          $ref: '#/components/schemas/types.EvaluatorType'
+        version_id:
+          type: string
+      type: object
+    request.WordCountRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.WordCountInput'
+      required:
+      - input
+      type: object
+    request.CharCountRatioRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.CharCountRatioInput'
+      required:
+      - input
+      type: object
+    request.FaithfulnessInput:
+      properties:
+        completion:
+          example: The Eiffel Tower is located in Paris and was built in 1889.
+          type: string
+        context:
+          example: The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889.
+          type: string
+        question:
+          example: When was the Eiffel Tower built?
+          type: string
+      required:
+      - completion
+      - context
+      - question
+      type: object
+    request.CharCountRatioInput:
+      properties:
+        denominator_text:
+          example: This is a longer text for comparison
+          type: string
+        numerator_text:
+          example: Short text
+          type: string
+      required:
+      - denominator_text
+      - numerator_text
+      type: object
+    request.CharCountInput:
+      properties:
+        text:
+          example: Hello, world! This is a sample text.
+          type: string
+      required:
+      - text
+      type: object
+    response.AgentToolErrorDetectorResponse:
+      properties:
+        reason:
+          example: Tool executed successfully without errors
+          type: string
+        success:
+          example: true
+          type: boolean
+      type: object
+    request.RegexValidatorRequest:
+      properties:
+        config:
+          $ref: '#/components/schemas/request.RegexValidatorConfigRequest'
+        input:
+          $ref: '#/components/schemas/request.RegexValidatorInput'
+      required:
+      - input
+      type: object
+    request.UncertaintyDetectorInput:
+      properties:
+        prompt:
+          example: I am not sure, I think the capital of France is Paris.
+          type: string
+      required:
+      - prompt
+      type: object
+    request.ConversationQualityRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.ConversationQualityInput'
+      required:
+      - input
+      type: object
+    response.RegexValidatorResponse:
+      properties:
+        is_valid_regex:
+          example: true
+          type: boolean
+      type: object
+    request.RegexValidatorConfigRequest:
+      properties:
+        case_sensitive:
+          example: true
+          type: boolean
+        dot_include_nl:
+          example: true
+          type: boolean
+        multi_line:
+          example: true
+          type: boolean
+        regex:
+          example: .*
+          type: string
+        should_match:
+          example: true
+          type: boolean
+      type: object
+    request.UncertaintyDetectorRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.UncertaintyDetectorInput'
+      required:
+      - input
+      type: object
+    response.ToneDetectionResponse:
+      properties:
+        score:
+          example: 0.95
+          type: number
+        tone:
+          example: neutral
+          type: string
+      type: object
+    request.ToneDetectionInput:
+      properties:
+        text:
+          example: The capital of France is Paris.
+          type: string
+      required:
+      - text
+      type: object
+    request.AgentGoalCompletenessConfigRequest:
+      properties:
+        threshold:
+          example: 0.5
+          type: number
+      required:
+      - threshold
+      type: object
+    response.ConversationQualityResponse:
+      properties:
+        conversation_quality_score:
+          example: 0.82
+          type: number
+      type: object
+    request.AnswerCorrectnessInput:
+      properties:
+        completion:
+          example: World War II ended in 1945.
+          type: string
+        ground_truth:
+          example: '1945'
+          type: string
+        question:
+          example: What year did World War II end?
+          type: string
+      required:
+      - completion
+      - ground_truth
+      - question
+      type: object
+    response.UncertaintyDetectorResponse:
+      properties:
+        answer:
+          example: Paris
+          type: string
+        uncertainty:
+          example: 0.95
+          type: number
+      type: object
+    response.PIIDetectorResponse:
+      properties:
+        has_pii:
+          example: false
+          type: boolean
+      type: object
+    request.PIIDetectorRequest:
+      properties:
+        config:
+          $ref: '#/components/schemas/request.PIIDetectorConfigRequest'
+        input:
+          $ref: '#/components/schemas/request.PIIDetectorInput'
+      required:
+      - input
+      type: object
+    response.ContextRelevanceResponse:
+      properties:
+        relevance_score:
+          example: 0.88
+          type: number
+      type: object
+    response.PlaceholderRegexResponse:
+      properties:
+        is_valid_regex:
+          example: true
+          type: boolean
+      type: object
+    request.AgentGoalCompletenessRequest:
+      properties:
+        config:
+          $ref: '#/components/schemas/request.AgentGoalCompletenessConfigRequest'
+        input:
+          $ref: '#/components/schemas/request.AgentGoalCompletenessInput'
+      required:
+      - input
+      type: object
+    response.CharCountResponse:
+      properties:
+        char_count:
+          example: 42
+          type: integer
+      type: object
+    request.PlaceholderRegexRequest:
+      properties:
+        config:
+          $ref: '#/components/schemas/request.PlaceholderRegexConfigRequest'
+        input:
+          $ref: '#/components/schemas/request.PlaceholderRegexInput'
+      required:
+      - input
+      type: object
+    request.ToxicityDetectorRequest:
+      properties:
+        config:
+          $ref: '#/components/schemas/request.ToxicityDetectorConfigRequest'
+        input:
+          $ref: '#/components/schemas/request.ToxicityDetectorInput'
+      required:
+      - input
+      type: object
+    response.SQLValidatorResponse:
+      properties:
+        is_valid_sql:
+          example: true
+          type: boolean
+      type: object
+    response.InstructionAdherenceResponse:
+      properties:
+        instruction_adherence_score:
+          example: 0.87
+          type: number
+      type: object
+    request.AgentGoalCompletenessInput:
+      properties:
+        trajectory_completions:
+          example: '["Account created", "Preferences saved", "Notifications enabled"]'
+          type: string
+        trajectory_prompts:
+          example: '["Create new account", "Set preferences", "Enable notifications"]'
+          type: string
+      required:
+      - trajectory_completions
+      - trajectory_prompts
+      type: object
+    request.JSONValidatorInput:
+      properties:
+        text:
+          example: '{"name": "John", "age": 30}'
+          type: string
+      required:
+      - text
+      type: object
+    response.AnswerRelevancyResponse:
+      properties:
+        is_relevant:
+          example: true
+          type: boolean
+      type: object
+    request.WordCountInput:
+      properties:
+        text:
+          example: This is a sample text with several words.
+          type: string
+      required:
+      - text
+      type: object
+    request.PerplexityRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.PerplexityInput'
+      required:
+      - input
+      type: object
+    request.FaithfulnessRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.FaithfulnessInput'
+      required:
+      - input
+      type: object
+    response.PromptPerplexityResponse:
+      properties:
+        perplexity_score:
+          example: 8.3
+          type: number
+      type: object
+    response.ProfanityDetectorResponse:
+      properties:
+        is_safe:
+          example: false
+          type: boolean
+      type: object
+    request.AnswerCompletenessInput:
+      properties:
+        completion:
+          example: Paris.
+          type: string
+        context:
+          example: The capital of France is Paris.
+          type: string
+        question:
+          example: What is the capital of France?
+          type: string
+      required:
+      - completion
+      - context
+      - question
+      type: object
+    evaluator.Property:
+      properties:
+        description:
+          type: string
+        enum_values:
+          description: The allowed values for this property. Only applicable when `type` is `enum`.
+          items:
+            type: string
+          type: array
+        label:
+          type: string
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/evaluator.PropertyType'
+      required:
+      - name
+      - type
+      type: object
+    request.PlaceholderRegexConfigRequest:
+      properties:
+        case_sensitive:
+          example: true
+          type: boolean
+        dot_include_nl:
+          example: true
+          type: boolean
+        multi_line:
+          example: true
+          type: boolean
+        should_match:
+          example: true
+          type: boolean
+      type: object
+    response.AnswerCompletenessResponse:
+      properties:
+        answer_completeness_score:
+          example: 0.95
+          type: number
+      type: object
+    request.AgentToolErrorDetectorRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.AgentToolErrorDetectorInput'
+      required:
+      - input
+      type: object
+    request.PerplexityInput:
+      properties:
+        logprobs:
+          example: '[-2.3, -1.5, -0.8, -1.2, -0.5]'
+          type: string
+      required:
+      - logprobs
+      type: object
+    response.SexismDetectorResponse:
+      properties:
+        is_safe:
           example: false
           type: boolean
       type: object
@@ -2791,10 +2624,177 @@ components:
           example: 0.5
           type: number
       type: object
-    response.TopicAdherenceResponse:
+    request.AnswerCompletenessRequest:
       properties:
-        adherence_score:
+        input:
+          $ref: '#/components/schemas/request.AnswerCompletenessInput'
+      required:
+      - input
+      type: object
+    response.AgentEfficiencyResponse:
+      properties:
+        step_efficiency_reason:
+          example: Agent completed task with minimal redundant steps
+          type: string
+        step_efficiency_score:
+          example: 0.85
+          type: number
+        task_completion_reason:
+          example: All required tasks were completed successfully
+          type: string
+        task_completion_score:
+          example: 0.92
+          type: number
+      type: object
+    response.AgentFlowQualityResponse:
+      properties:
+        reason:
+          example: Agent followed the expected flow correctly
+          type: string
+        score:
+          example: 0.89
+          type: number
+        success:
+          example: true
+          type: boolean
+      type: object
+    model.LLMMessage:
+      properties:
+        content:
+          type: string
+        role:
+          type: string
+        tool_call_id:
+          type: string
+      type: object
+    request.TopicAdherenceInput:
+      properties:
+        completion:
+          example: Machine learning is a subset of AI that enables systems to learn from data.
+          type: string
+        question:
+          example: Tell me about machine learning
+          type: string
+        reference_topics:
+          example: artificial intelligence, data science, algorithms
+          type: string
+      required:
+      - completion
+      - question
+      - reference_topics
+      type: object
+    request.SQLValidatorInput:
+      properties:
+        text:
+          example: SELECT * FROM users WHERE id = 1;
+          type: string
+      required:
+      - text
+      type: object
+    request.InstructionAdherenceInput:
+      properties:
+        instructions:
+          example: Respond in exactly 3 bullet points and use formal language.
+          type: string
+        response:
+          example: '- First point about the topic
+
+            - Second relevant consideration
+
+            - Final concluding thought'
+          type: string
+      required:
+      - instructions
+      - response
+      type: object
+    request.ProfanityDetectorInput:
+      properties:
+        text:
+          example: This is a clean and professional message.
+          type: string
+      required:
+      - text
+      type: object
+    response.WordCountResponse:
+      properties:
+        word_count:
+          example: 10
+          type: integer
+      type: object
+    request.AgentToolTrajectoryRequest:
+      properties:
+        config:
+          $ref: '#/components/schemas/request.AgentToolTrajectoryConfigRequest'
+        input:
+          $ref: '#/components/schemas/request.AgentToolTrajectoryInput'
+      required:
+      - input
+      type: object
+    request.IntentChangeRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.IntentChangeInput'
+      required:
+      - input
+      type: object
+    request.SexismDetectorRequest:
+      properties:
+        config:
+          $ref: '#/components/schemas/request.SexismDetectorConfigRequest'
+        input:
+          $ref: '#/components/schemas/request.SexismDetectorInput'
+      required:
+      - input
+      type: object
+    request.WordCountRatioRequest:
+      properties:
+        input:
+          $ref: '#/components/schemas/request.WordCountRatioInput'
+      required:
+      - input
+      type: object
+    response.AgentGoalCompletenessResponse:
+      properties:
+        reason:
+          example: All user goals were accomplished
+          type: string
+        score:
           example: 0.95
+          type: number
+        success:
+          example: true
+          type: boolean
+      type: object
+    request.ConversationQualityInput:
+      properties:
+        completions:
+          example: '["Hi! I''d be happy to assist you today.", "We offer consulting, development, and support services."]'
+          type: string
+        prompts:
+          example: '["Hello, how can I help?", "What services do you offer?"]'
+          type: string
+      required:
+      - completions
+      - prompts
+      type: object
+    request.PromptPerplexityInput:
+      properties:
+        prompt:
+          example: What is the capital of France?
+          type: string
+      required:
+      - prompt
+      type: object
+    response.FaithfulnessResponse:
+      properties:
+        is_faithful:
+          example: true
+          type: boolean
+      type: object
+    response.PerplexityResponse:
+      properties:
+        perplexity_score:
+          example: 12.5
           type: number
       type: object
   securitySchemes:

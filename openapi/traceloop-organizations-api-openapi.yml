@@ -50,11 +50,11 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    response.ErrorResponse:
-      description: Standard error response structure
+    response.EnvironmentWithKeyResponse:
       properties:
-        error:
-          example: error message
+        api_key:
+          type: string
+        slug:
           type: string
       type: object
     response.CreateOrganizationResponse:
@@ -64,13 +64,6 @@ components:
             $ref: '#/components/schemas/response.EnvironmentWithKeyResponse'
           type: array
         org_id:
-          type: string
-      type: object
-    response.EnvironmentWithKeyResponse:
-      properties:
-        api_key:
-          type: string
-        slug:
           type: string
       type: object
     request.CreateOrganizationRequest:
@@ -89,6 +82,13 @@ components:
           default: 720
       required:
       - org_name
+      type: object
+    response.ErrorResponse:
+      description: Standard error response structure
+      properties:
+        error:
+          example: error message
+          type: string
       type: object
   securitySchemes:
     BearerAuth:

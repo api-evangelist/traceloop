@@ -69,54 +69,10 @@ paths:
       - Metrics
 components:
   schemas:
-    response.MetricGroup:
+    response.GetMetricsResponse:
       properties:
-        metric_name:
-          type: string
-          description: Metric name.
-          example: answer relevancy
-        organization_id:
-          type: string
-        points:
-          items:
-            $ref: '#/components/schemas/response.MetricPoint'
-          type: array
-          description: 'List of data points for this metric. The `unit` field in each point''s `labels` indicates the data type and determines which value field is populated: `bool_value` for booleans, `numeric_value` for numbers, or `enum_value` for strings.'
-      type: object
-    response.MetricsHWMResponse:
-      properties:
-        high_water_mark:
-          type: integer
-      type: object
-    shared.FilterCondition:
-      properties:
-        field:
-          type: string
-          description: Field key to filter by. The key is labels attribute on the metric point from the response.metrics object
-          example: labels.agent_name
-        operator:
-          type: string
-          description: Comparison operator.
-          enum:
-          - equals
-          - not_equals
-          - contains
-          - not_contains
-          - in
-          - not_in
-          example: equals
-        value:
-          type: string
-          description: Value to filter by.
-          example: Travel Planner Agent
-        values:
-          items:
-            type: string
-          type: array
-          description: List of values to filter by. This is only used for the in and not_in operators.
-          example:
-          - Travel Planner Agent
-          - Calendar Planner Agent
+        metrics:
+          $ref: '#/components/schemas/response.PaginatedMetricsResponse'
       type: object
     response.PaginatedMetricsResponse:
       properties:
@@ -130,13 +86,6 @@ components:
           type: integer
         total_results:
           type: integer
-      type: object
-    response.ErrorResponse:
-      description: Standard error response structure
-      properties:
-        error:
-          example: error message
-          type: string
       type: object
     request.GetMetricsRequest:
       properties:
@@ -222,6 +171,43 @@ components:
             type: string
           type: object
       type: object
+    shared.FilterCondition:
+      properties:
+        field:
+          type: string
+          description: Field key to filter by. The key is labels attribute on the metric point from the response.metrics object
+          example: labels.agent_name
+        operator:
+          type: string
+          description: Comparison operator.
+          enum:
+          - equals
+          - not_equals
+          - contains
+          - not_contains
+          - in
+          - not_in
+          example: equals
+        value:
+          type: string
+          description: Value to filter by.
+          example: Travel Planner Agent
+        values:
+          items:
+            type: string
+          type: array
+          description: List of values to filter by. This is only used for the in and not_in operators.
+          example:
+          - Travel Planner Agent
+          - Calendar Planner Agent
+      type: object
+    response.ErrorResponse:
+      description: Standard error response structure
+      properties:
+        error:
+          example: error message
+          type: string
+      type: object
     types.LogicalOperator:
       enum:
       - AND
@@ -230,10 +216,24 @@ components:
       x-enum-varnames:
       - LogicalOperatorAnd
       - LogicalOperatorOr
-    response.GetMetricsResponse:
+    response.MetricGroup:
       properties:
-        metrics:
-          $ref: '#/components/schemas/response.PaginatedMetricsResponse'
+        metric_name:
+          type: string
+          description: Metric name.
+          example: answer relevancy
+        organization_id:
+          type: string
+        points:
+          items:
+            $ref: '#/components/schemas/response.MetricPoint'
+          type: array
+          description: 'List of data points for this metric. The `unit` field in each point''s `labels` indicates the data type and determines which value field is populated: `bool_value` for booleans, `numeric_value` for numbers, or `enum_value` for strings.'
+      type: object
+    response.MetricsHWMResponse:
+      properties:
+        high_water_mark:
+          type: integer
       type: object
   securitySchemes:
     BearerAuth:
