@@ -150,6 +150,9 @@ apis:
   - type: JSONLDContext
     url: json-ld/traceloop-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/traceloop-capability-edges.yml
+    name: Traceloop Business Capability Map
   - type: AgenticAccess
     url: agentic-access/traceloop-agentic-access.yml
   - type: DomainSecurity

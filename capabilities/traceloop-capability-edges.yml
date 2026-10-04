@@ -1,0 +1,25 @@
+slug: traceloop
+provider: Traceloop
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Evaluators
+  spec_file: traceloop-evaluators-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.72
+  evidence: '''Create a custom LLM-as-a-judge evaluator'', ''Execute answer-correctness evaluator'', ''Execute
+    agent-goal-accuracy evaluator'', schemas request.PIIDetectorConfigRequest, response.SemanticSimilarityResponse'
+  reason: Systematic evaluation of LLM/agent output quality is part of the AI/ML model lifecycle and responsible-AI
+    practice (BC-610.60). Some overlap with software quality engineering, hence moderate confidence.
