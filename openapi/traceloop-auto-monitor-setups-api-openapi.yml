@@ -202,42 +202,41 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    types.Rule:
+    evaluator.Property:
       properties:
-        key:
+        description:
           type: string
-        op:
-          $ref: '#/components/schemas/types.ComparisonOperator'
-        source:
-          type: string
-        value:
-          type: string
-        value_type:
-          type: string
-      type: object
-    response.AutoMonitorEvaluatorResponse:
-      properties:
-        binding_id:
-          type: string
-        error_message:
-          type: string
-        evaluator_id:
-          type: string
-        evaluator_type:
-          type: string
-        input_schema:
+        enum_values:
+          description: The allowed values for this property. Only applicable when `type` is `enum`.
           items:
-            $ref: '#/components/schemas/evaluator.Property'
+            type: string
           type: array
-        output_schema:
-          items:
-            $ref: '#/components/schemas/evaluator.Property'
-          type: array
-        processed_at:
+        label:
           type: string
-        status:
+        name:
           type: string
+        type:
+          $ref: '#/components/schemas/evaluator.PropertyType'
+      required:
+      - name
+      - type
       type: object
+    types.ComparisonOperator:
+      enum:
+      - equals
+      - not_equals
+      - contains
+      - not_contains
+      - in
+      - not_in
+      type: string
+      x-enum-varnames:
+      - ComparisonOperatorEquals
+      - ComparisonOperatorNotEquals
+      - ComparisonOperatorContains
+      - ComparisonOperatorNotContains
+      - ComparisonOperatorIn
+      - ComparisonOperatorNotIn
     request.UpdateAutoMonitorSetupInput:
       properties:
         evaluators:
@@ -257,13 +256,6 @@ components:
 
             Example: {"gen_ai.system": "openai", "gen_ai.request.model": "gpt-4o", "gen_ai.request.max_tokens": 1000}'
           type: object
-      type: object
-    response.ErrorResponse:
-      description: Standard error response structure
-      properties:
-        error:
-          example: error message
-          type: string
       type: object
     response.AutoMonitorSetupResponse:
       properties:
@@ -292,40 +284,28 @@ components:
         updated_at:
           type: string
       type: object
-    types.ComparisonOperator:
-      enum:
-      - equals
-      - not_equals
-      - contains
-      - not_contains
-      - in
-      - not_in
-      type: string
-      x-enum-varnames:
-      - ComparisonOperatorEquals
-      - ComparisonOperatorNotEquals
-      - ComparisonOperatorContains
-      - ComparisonOperatorNotContains
-      - ComparisonOperatorIn
-      - ComparisonOperatorNotIn
-    evaluator.Property:
+    response.AutoMonitorEvaluatorResponse:
       properties:
-        description:
+        binding_id:
           type: string
-        enum_values:
-          description: The allowed values for this property. Only applicable when `type` is `enum`.
+        error_message:
+          type: string
+        evaluator_id:
+          type: string
+        evaluator_type:
+          type: string
+        input_schema:
           items:
-            type: string
+            $ref: '#/components/schemas/evaluator.Property'
           type: array
-        label:
+        output_schema:
+          items:
+            $ref: '#/components/schemas/evaluator.Property'
+          type: array
+        processed_at:
           type: string
-        name:
+        status:
           type: string
-        type:
-          $ref: '#/components/schemas/evaluator.PropertyType'
-      required:
-      - name
-      - type
       type: object
     request.CreateAutoMonitorSetupInput:
       properties:
@@ -355,6 +335,13 @@ components:
       - evaluators
       - external_id
       type: object
+    response.ErrorResponse:
+      description: Standard error response structure
+      properties:
+        error:
+          example: error message
+          type: string
+      type: object
     evaluator.PropertyType:
       enum:
       - string
@@ -369,6 +356,19 @@ components:
       - FloatType
       - BooleanType
       - EnumType
+    types.Rule:
+      properties:
+        key:
+          type: string
+        op:
+          $ref: '#/components/schemas/types.ComparisonOperator'
+        source:
+          type: string
+        value:
+          type: string
+        value_type:
+          type: string
+      type: object
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

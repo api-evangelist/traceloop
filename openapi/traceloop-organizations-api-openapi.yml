@@ -66,6 +66,13 @@ components:
         org_id:
           type: string
       type: object
+    response.ErrorResponse:
+      description: Standard error response structure
+      properties:
+        error:
+          example: error message
+          type: string
+      type: object
     request.CreateOrganizationRequest:
       properties:
         envs:
@@ -82,13 +89,6 @@ components:
           default: 720
       required:
       - org_name
-      type: object
-    response.ErrorResponse:
-      description: Standard error response structure
-      properties:
-        error:
-          example: error message
-          type: string
       type: object
   securitySchemes:
     BearerAuth:

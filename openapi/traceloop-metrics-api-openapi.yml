@@ -69,24 +69,6 @@ paths:
       - Metrics
 components:
   schemas:
-    response.GetMetricsResponse:
-      properties:
-        metrics:
-          $ref: '#/components/schemas/response.PaginatedMetricsResponse'
-      type: object
-    response.PaginatedMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/response.MetricGroup'
-          type: array
-        next_cursor:
-          type: string
-        total_points:
-          type: integer
-        total_results:
-          type: integer
-      type: object
     request.GetMetricsRequest:
       properties:
         from_timestamp_sec:
@@ -171,6 +153,24 @@ components:
             type: string
           type: object
       type: object
+    response.GetMetricsResponse:
+      properties:
+        metrics:
+          $ref: '#/components/schemas/response.PaginatedMetricsResponse'
+      type: object
+    types.LogicalOperator:
+      enum:
+      - AND
+      - OR
+      type: string
+      x-enum-varnames:
+      - LogicalOperatorAnd
+      - LogicalOperatorOr
+    response.MetricsHWMResponse:
+      properties:
+        high_water_mark:
+          type: integer
+      type: object
     shared.FilterCondition:
       properties:
         field:
@@ -208,14 +208,6 @@ components:
           example: error message
           type: string
       type: object
-    types.LogicalOperator:
-      enum:
-      - AND
-      - OR
-      type: string
-      x-enum-varnames:
-      - LogicalOperatorAnd
-      - LogicalOperatorOr
     response.MetricGroup:
       properties:
         metric_name:
@@ -230,9 +222,17 @@ components:
           type: array
           description: 'List of data points for this metric. The `unit` field in each point''s `labels` indicates the data type and determines which value field is populated: `bool_value` for booleans, `numeric_value` for numbers, or `enum_value` for strings.'
       type: object
-    response.MetricsHWMResponse:
+    response.PaginatedMetricsResponse:
       properties:
-        high_water_mark:
+        data:
+          items:
+            $ref: '#/components/schemas/response.MetricGroup'
+          type: array
+        next_cursor:
+          type: string
+        total_points:
+          type: integer
+        total_results:
           type: integer
       type: object
   securitySchemes:
