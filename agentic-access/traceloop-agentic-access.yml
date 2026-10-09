@@ -1,21 +1,24 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/traceloop-rest-api-openapi.yml
+source: openapi/traceloop-auto-monitor-setups-api-openapi.yml, openapi/traceloop-evaluators-api-openapi.yml,
+  openapi/traceloop-metrics-api-openapi.yml, openapi/traceloop-organizations-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 44
   by_action_class:
-    connected: 3
-    acting: 41
+    connected: 4
+    acting: 40
   by_consequence:
-    read: 3
-    write: 41
-  human_in_the_loop_required: 0
+    read: 4
+    write: 39
+    safety-critical: 1
+  human_in_the_loop_required: 1
 operations:
 - path: /v2/auto-monitor-setups
   method: get
+  operationId: getV2AutoMonitorSetups
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -25,6 +28,7 @@ operations:
     audit: none
 - path: /v2/auto-monitor-setups
   method: post
+  operationId: postV2AutoMonitorSetups
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -40,6 +44,7 @@ operations:
     audit: required
 - path: /v2/auto-monitor-setups/{external_id}
   method: delete
+  operationId: deleteV2AutoMonitorSetupsByExternalId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -55,6 +60,7 @@ operations:
     audit: required
 - path: /v2/auto-monitor-setups/{external_id}
   method: get
+  operationId: getV2AutoMonitorSetupsByExternalId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -64,6 +70,7 @@ operations:
     audit: none
 - path: /v2/auto-monitor-setups/{external_id}
   method: put
+  operationId: putV2AutoMonitorSetupsByExternalId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -79,6 +86,7 @@ operations:
     audit: required
 - path: /v2/evaluators
   method: post
+  operationId: postV2Evaluators
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -94,6 +102,7 @@ operations:
     audit: required
 - path: /v2/evaluators/agent-efficiency/execute
   method: post
+  operationId: postV2EvaluatorsAgentEfficiencyExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -109,6 +118,7 @@ operations:
     audit: required
 - path: /v2/evaluators/agent-flow-quality/execute
   method: post
+  operationId: postV2EvaluatorsAgentFlowQualityExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -124,6 +134,7 @@ operations:
     audit: required
 - path: /v2/evaluators/agent-goal-accuracy/execute
   method: post
+  operationId: postV2EvaluatorsAgentGoalAccuracyExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -139,6 +150,7 @@ operations:
     audit: required
 - path: /v2/evaluators/agent-goal-completeness/execute
   method: post
+  operationId: postV2EvaluatorsAgentGoalCompletenessExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -154,6 +166,7 @@ operations:
     audit: required
 - path: /v2/evaluators/agent-tool-error-detector/execute
   method: post
+  operationId: postV2EvaluatorsAgentToolErrorDetectorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -169,6 +182,7 @@ operations:
     audit: required
 - path: /v2/evaluators/agent-tool-trajectory/execute
   method: post
+  operationId: postV2EvaluatorsAgentToolTrajectoryExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -184,6 +198,7 @@ operations:
     audit: required
 - path: /v2/evaluators/answer-completeness/execute
   method: post
+  operationId: postV2EvaluatorsAnswerCompletenessExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -199,6 +214,7 @@ operations:
     audit: required
 - path: /v2/evaluators/answer-correctness/execute
   method: post
+  operationId: postV2EvaluatorsAnswerCorrectnessExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -214,6 +230,7 @@ operations:
     audit: required
 - path: /v2/evaluators/answer-relevancy/execute
   method: post
+  operationId: postV2EvaluatorsAnswerRelevancyExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -229,6 +246,7 @@ operations:
     audit: required
 - path: /v2/evaluators/char-count/execute
   method: post
+  operationId: postV2EvaluatorsCharCountExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -244,6 +262,7 @@ operations:
     audit: required
 - path: /v2/evaluators/char-count-ratio/execute
   method: post
+  operationId: postV2EvaluatorsCharCountRatioExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -259,6 +278,7 @@ operations:
     audit: required
 - path: /v2/evaluators/context-relevance/execute
   method: post
+  operationId: postV2EvaluatorsContextRelevanceExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -274,6 +294,7 @@ operations:
     audit: required
 - path: /v2/evaluators/conversation-quality/execute
   method: post
+  operationId: postV2EvaluatorsConversationQualityExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -289,6 +310,7 @@ operations:
     audit: required
 - path: /v2/evaluators/faithfulness/execute
   method: post
+  operationId: postV2EvaluatorsFaithfulnessExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -304,6 +326,7 @@ operations:
     audit: required
 - path: /v2/evaluators/html-comparison/execute
   method: post
+  operationId: postV2EvaluatorsHtmlComparisonExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -319,6 +342,7 @@ operations:
     audit: required
 - path: /v2/evaluators/instruction-adherence/execute
   method: post
+  operationId: postV2EvaluatorsInstructionAdherenceExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -334,6 +358,7 @@ operations:
     audit: required
 - path: /v2/evaluators/intent-change/execute
   method: post
+  operationId: postV2EvaluatorsIntentChangeExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -349,6 +374,7 @@ operations:
     audit: required
 - path: /v2/evaluators/json-validator/execute
   method: post
+  operationId: postV2EvaluatorsJsonValidatorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -364,6 +390,7 @@ operations:
     audit: required
 - path: /v2/evaluators/perplexity/execute
   method: post
+  operationId: postV2EvaluatorsPerplexityExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -379,6 +406,7 @@ operations:
     audit: required
 - path: /v2/evaluators/pii-detector/execute
   method: post
+  operationId: postV2EvaluatorsPiiDetectorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -394,6 +422,7 @@ operations:
     audit: required
 - path: /v2/evaluators/placeholder-regex/execute
   method: post
+  operationId: postV2EvaluatorsPlaceholderRegexExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -409,6 +438,7 @@ operations:
     audit: required
 - path: /v2/evaluators/profanity-detector/execute
   method: post
+  operationId: postV2EvaluatorsProfanityDetectorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -424,6 +454,7 @@ operations:
     audit: required
 - path: /v2/evaluators/prompt-injection/execute
   method: post
+  operationId: postV2EvaluatorsPromptInjectionExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -439,6 +470,7 @@ operations:
     audit: required
 - path: /v2/evaluators/prompt-perplexity/execute
   method: post
+  operationId: postV2EvaluatorsPromptPerplexityExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -454,6 +486,7 @@ operations:
     audit: required
 - path: /v2/evaluators/regex-validator/execute
   method: post
+  operationId: postV2EvaluatorsRegexValidatorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -469,6 +502,7 @@ operations:
     audit: required
 - path: /v2/evaluators/secrets-detector/execute
   method: post
+  operationId: postV2EvaluatorsSecretsDetectorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -484,6 +518,7 @@ operations:
     audit: required
 - path: /v2/evaluators/semantic-similarity/execute
   method: post
+  operationId: postV2EvaluatorsSemanticSimilarityExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -499,6 +534,7 @@ operations:
     audit: required
 - path: /v2/evaluators/sexism-detector/execute
   method: post
+  operationId: postV2EvaluatorsSexismDetectorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -514,6 +550,7 @@ operations:
     audit: required
 - path: /v2/evaluators/sql-validator/execute
   method: post
+  operationId: postV2EvaluatorsSqlValidatorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -529,6 +566,7 @@ operations:
     audit: required
 - path: /v2/evaluators/tone-detection/execute
   method: post
+  operationId: postV2EvaluatorsToneDetectionExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -544,21 +582,23 @@ operations:
     audit: required
 - path: /v2/evaluators/topic-adherence/execute
   method: post
+  operationId: postV2EvaluatorsTopicAdherenceExecute
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: safety-critical
     subject: required
     audience: null
     token:
-      max-ttl: 900
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
     escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
+      human-in-the-loop: required
     audit: required
 - path: /v2/evaluators/toxicity-detector/execute
   method: post
+  operationId: postV2EvaluatorsToxicityDetectorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -574,6 +614,7 @@ operations:
     audit: required
 - path: /v2/evaluators/uncertainty-detector/execute
   method: post
+  operationId: postV2EvaluatorsUncertaintyDetectorExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -589,6 +630,7 @@ operations:
     audit: required
 - path: /v2/evaluators/word-count/execute
   method: post
+  operationId: postV2EvaluatorsWordCountExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -604,6 +646,7 @@ operations:
     audit: required
 - path: /v2/evaluators/word-count-ratio/execute
   method: post
+  operationId: postV2EvaluatorsWordCountRatioExecute
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -621,18 +664,12 @@ operations:
   method: post
   operationId: get-metrics
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/metrics_hwm
   method: get
   operationId: get-metrics-hwm
@@ -645,6 +682,7 @@ operations:
     audit: none
 - path: /v2/organizations
   method: post
+  operationId: postV2Organizations
   x-agentic-access:
     action-class: acting
     consequence: write
