@@ -202,41 +202,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    evaluator.Property:
-      properties:
-        description:
-          type: string
-        enum_values:
-          description: The allowed values for this property. Only applicable when `type` is `enum`.
-          items:
-            type: string
-          type: array
-        label:
-          type: string
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/evaluator.PropertyType'
-      required:
-      - name
-      - type
-      type: object
-    types.ComparisonOperator:
-      enum:
-      - equals
-      - not_equals
-      - contains
-      - not_contains
-      - in
-      - not_in
-      type: string
-      x-enum-varnames:
-      - ComparisonOperatorEquals
-      - ComparisonOperatorNotEquals
-      - ComparisonOperatorContains
-      - ComparisonOperatorNotContains
-      - ComparisonOperatorIn
-      - ComparisonOperatorNotIn
     request.UpdateAutoMonitorSetupInput:
       properties:
         evaluators:
@@ -257,55 +222,24 @@ components:
             Example: {"gen_ai.system": "openai", "gen_ai.request.model": "gpt-4o", "gen_ai.request.max_tokens": 1000}'
           type: object
       type: object
-    response.AutoMonitorSetupResponse:
+    evaluator.Property:
       properties:
-        created_at:
+        description:
           type: string
-        env_project_id:
-          type: string
-        evaluators:
+        enum_values:
+          description: The allowed values for this property. Only applicable when `type` is `enum`.
           items:
-            $ref: '#/components/schemas/response.AutoMonitorEvaluatorResponse'
+            type: string
           type: array
-        external_id:
+        label:
           type: string
-        id:
+        name:
           type: string
-        init_rules:
-          items:
-            $ref: '#/components/schemas/types.Rule'
-          type: array
-        org_id:
-          type: string
-        project_id:
-          type: string
-        status:
-          type: string
-        updated_at:
-          type: string
-      type: object
-    response.AutoMonitorEvaluatorResponse:
-      properties:
-        binding_id:
-          type: string
-        error_message:
-          type: string
-        evaluator_id:
-          type: string
-        evaluator_type:
-          type: string
-        input_schema:
-          items:
-            $ref: '#/components/schemas/evaluator.Property'
-          type: array
-        output_schema:
-          items:
-            $ref: '#/components/schemas/evaluator.Property'
-          type: array
-        processed_at:
-          type: string
-        status:
-          type: string
+        type:
+          $ref: '#/components/schemas/evaluator.PropertyType'
+      required:
+      - name
+      - type
       type: object
     request.CreateAutoMonitorSetupInput:
       properties:
@@ -335,6 +269,46 @@ components:
       - evaluators
       - external_id
       type: object
+    response.AutoMonitorSetupResponse:
+      properties:
+        created_at:
+          type: string
+        env_project_id:
+          type: string
+        evaluators:
+          items:
+            $ref: '#/components/schemas/response.AutoMonitorEvaluatorResponse'
+          type: array
+        external_id:
+          type: string
+        id:
+          type: string
+        init_rules:
+          items:
+            $ref: '#/components/schemas/types.Rule'
+          type: array
+        org_id:
+          type: string
+        project_id:
+          type: string
+        status:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    types.Rule:
+      properties:
+        key:
+          type: string
+        op:
+          $ref: '#/components/schemas/types.ComparisonOperator'
+        source:
+          type: string
+        value:
+          type: string
+        value_type:
+          type: string
+      type: object
     response.ErrorResponse:
       description: Standard error response structure
       properties:
@@ -356,19 +330,45 @@ components:
       - FloatType
       - BooleanType
       - EnumType
-    types.Rule:
+    response.AutoMonitorEvaluatorResponse:
       properties:
-        key:
+        binding_id:
           type: string
-        op:
-          $ref: '#/components/schemas/types.ComparisonOperator'
-        source:
+        error_message:
           type: string
-        value:
+        evaluator_id:
           type: string
-        value_type:
+        evaluator_type:
+          type: string
+        input_schema:
+          items:
+            $ref: '#/components/schemas/evaluator.Property'
+          type: array
+        output_schema:
+          items:
+            $ref: '#/components/schemas/evaluator.Property'
+          type: array
+        processed_at:
+          type: string
+        status:
           type: string
       type: object
+    types.ComparisonOperator:
+      enum:
+      - equals
+      - not_equals
+      - contains
+      - not_contains
+      - in
+      - not_in
+      type: string
+      x-enum-varnames:
+      - ComparisonOperatorEquals
+      - ComparisonOperatorNotEquals
+      - ComparisonOperatorContains
+      - ComparisonOperatorNotContains
+      - ComparisonOperatorIn
+      - ComparisonOperatorNotIn
   securitySchemes:
     BearerAuth:
       description: Type "Bearer" followed by a space and JWT token.

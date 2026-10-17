@@ -69,6 +69,62 @@ paths:
       - Metrics
 components:
   schemas:
+    response.MetricsHWMResponse:
+      properties:
+        high_water_mark:
+          type: integer
+      type: object
+    response.PaginatedMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/response.MetricGroup'
+          type: array
+        next_cursor:
+          type: string
+        total_points:
+          type: integer
+        total_results:
+          type: integer
+      type: object
+    types.LogicalOperator:
+      enum:
+      - AND
+      - OR
+      type: string
+      x-enum-varnames:
+      - LogicalOperatorAnd
+      - LogicalOperatorOr
+    shared.FilterCondition:
+      properties:
+        field:
+          type: string
+          description: Field key to filter by. The key is labels attribute on the metric point from the response.metrics object
+          example: labels.agent_name
+        operator:
+          type: string
+          description: Comparison operator.
+          enum:
+          - equals
+          - not_equals
+          - contains
+          - not_contains
+          - in
+          - not_in
+          example: equals
+        value:
+          type: string
+          description: Value to filter by.
+          example: Travel Planner Agent
+        values:
+          items:
+            type: string
+          type: array
+          description: List of values to filter by. This is only used for the in and not_in operators.
+          example:
+          - Travel Planner Agent
+          - Calendar Planner Agent
+      type: object
     request.GetMetricsRequest:
       properties:
         from_timestamp_sec:
@@ -119,6 +175,11 @@ components:
           description: Sort order.
           example: ASC
       type: object
+    response.GetMetricsResponse:
+      properties:
+        metrics:
+          $ref: '#/components/schemas/response.PaginatedMetricsResponse'
+      type: object
     response.MetricPoint:
       description: 'A single metric data point. The `unit` field in `labels` indicates the data type and determines which value field is populated: `bool_value` for booleans unitless, `numeric_value` for number units, or `enum_value` for strings.'
       properties:
@@ -153,54 +214,6 @@ components:
             type: string
           type: object
       type: object
-    response.GetMetricsResponse:
-      properties:
-        metrics:
-          $ref: '#/components/schemas/response.PaginatedMetricsResponse'
-      type: object
-    types.LogicalOperator:
-      enum:
-      - AND
-      - OR
-      type: string
-      x-enum-varnames:
-      - LogicalOperatorAnd
-      - LogicalOperatorOr
-    response.MetricsHWMResponse:
-      properties:
-        high_water_mark:
-          type: integer
-      type: object
-    shared.FilterCondition:
-      properties:
-        field:
-          type: string
-          description: Field key to filter by. The key is labels attribute on the metric point from the response.metrics object
-          example: labels.agent_name
-        operator:
-          type: string
-          description: Comparison operator.
-          enum:
-          - equals
-          - not_equals
-          - contains
-          - not_contains
-          - in
-          - not_in
-          example: equals
-        value:
-          type: string
-          description: Value to filter by.
-          example: Travel Planner Agent
-        values:
-          items:
-            type: string
-          type: array
-          description: List of values to filter by. This is only used for the in and not_in operators.
-          example:
-          - Travel Planner Agent
-          - Calendar Planner Agent
-      type: object
     response.ErrorResponse:
       description: Standard error response structure
       properties:
@@ -221,19 +234,6 @@ components:
             $ref: '#/components/schemas/response.MetricPoint'
           type: array
           description: 'List of data points for this metric. The `unit` field in each point''s `labels` indicates the data type and determines which value field is populated: `bool_value` for booleans, `numeric_value` for numbers, or `enum_value` for strings.'
-      type: object
-    response.PaginatedMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/response.MetricGroup'
-          type: array
-        next_cursor:
-          type: string
-        total_points:
-          type: integer
-        total_results:
-          type: integer
       type: object
   securitySchemes:
     BearerAuth:
