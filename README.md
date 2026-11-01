@@ -1,4 +1,4 @@
-# Traceloop (traceloop)
+# Traceloop
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,60 +64,148 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Traceloop is an LLM reliability and observability platform built on OpenTelemetry that provides full visibility into every prompt, response, and failure across AI pipelines. The platform enables teams to monitor LLM quality in production, detect model drift and hallucinations, run automated evaluations via LLM-as-a-judge, and enforce quality gates in CI/CD workflows. Traceloop exposes a REST API for managing auto-monitor setups, running 40+ built-in evaluators (safety, faithfulness, PII, toxicity, structural validation), querying metrics and span warehouse data, and administering organizations and environments. The open-source OpenLLMetry SDK integrates in one line of code across Python, TypeScript, Go, and Ruby with support for 20+ LLM providers and major orchestration frameworks including LangChain, LlamaIndex, and CrewAI. Traceloop was acquired by ServiceNow in March 2026.
+Traceloop is an LLM reliability and observability platform built on OpenTelemetry that provides full visibility into every prompt, response, and failure across AI pipelines. The platform enables teams to monitor LLM quality in production, detect model drift and hallucinations, run automated evaluations via LLM-as-a-judge, and enforce quality gates in CI/CD workflows. Traceloop exposes a REST API for managing auto-monitor setups, running 40+ built-in evaluators (safety, faithfulness, PII, toxicity, structural validation), querying metrics and span warehouse data, and administering organizations and environments. The open-source OpenLLMetry SDK integrates in one line of code across Python, TypeScript, Go, and Ruby with support for 20+ LLM providers and major orchestration frameworks.
 
-APIs.json: https://raw.githubusercontent.com/api-evangelist/traceloop/refs/heads/main/apis.yml
+**Areas:** LLM Observability · OpenTelemetry · AI Monitoring · Tracing · Evaluation · LLM Gateway · Prompt Management · Machine Learning
 
-Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=traceloop-api-evangelist&utm_content=repo
+## Traceloop on APIs.io
 
-## Tags
+Everything profiled for Traceloop is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/traceloop/](https://apis.io/providers/traceloop/)** — or go straight to one of the APIs or properties below.
 
-- LLM Observability
-- OpenTelemetry
-- AI Monitoring
-- Tracing
-- Evaluation
-- LLM Gateway
-- Prompt Management
-- Machine Learning
+### APIs (4)
 
-## APIs
+- [Traceloop Auto Monitor Setups API](https://apis.io/apis/traceloop/traceloop-auto-monitor-setups-api/) — The auto-monitor-setups API from Traceloop — 2 operation(s) for auto-monitor-setups.
+- [Traceloop Evaluators API](https://apis.io/apis/traceloop/traceloop-evaluators-api/) — The evaluators API from Traceloop — 36 operation(s) for evaluators.
+- [Traceloop Metrics API](https://apis.io/apis/traceloop/traceloop-metrics-api/) — The metrics API from Traceloop — 2 operation(s) for metrics.
+- [Traceloop Organizations API](https://apis.io/apis/traceloop/traceloop-organizations-api/) — The organizations API from Traceloop — 1 operation(s) for organizations.
 
-### Traceloop REST API
+### Published properties
 
-REST API for managing LLM observability infrastructure including auto-monitor setups, evaluators, metrics, organizations, tracing privacy controls, cost reporting, and span warehouse queries. Authenticated with Bearer tokens generated from the Traceloop dashboard. Base URL: `https://api.traceloop.com`.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- Documentation: https://www.traceloop.com/docs/api-reference/introduction
-- OpenAPI: https://www.traceloop.com/docs/openapi.json
+#### Agentic access (1)
 
-## Plans / Rate Limits / FinOps
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Plans & Pricing: [plans/traceloop-plans-pricing.yml](plans/traceloop-plans-pricing.yml)
-- Rate Limits: [rate-limits/traceloop-rate-limits.yml](rate-limits/traceloop-rate-limits.yml)
-- FinOps: [finops/traceloop-finops.yml](finops/traceloop-finops.yml)
+- [Traceloop Agentic Access](https://apis.io/agentic-access/traceloop/traceloop-agentic-access/)
 
-**Free Forever:** $0/month — up to 50,000 spans/month, 5 seats, 24-hour data retention, monitoring dashboard, evaluation dashboard, CI/CD integration, prompt management.
+#### JSON Schema (1)
 
-**Enterprise:** Custom pricing — unlimited spans and seats, custom data retention (up to 720 hours), SOC 2 compliance, on-premises deployment, dedicated Slack support. Available on AWS, GCP, and Azure Marketplaces. 14-day free trial.
+The data models the API reads and writes.
 
-## Timestamps
+- [Traceloop API Schemas](https://apis.io/schemas/traceloop/traceloop/)
 
-- Created: 2026-06-13
-- Modified: 2026-06-13
+#### JSON-LD (1)
 
-## Common
+Linked-data contexts for the provider's vocabulary.
 
-| Type | URL |
-|------|-----|
-| Website | https://www.traceloop.com/ |
-| Documentation | https://docs.traceloop.com/ |
-| GitHub Org | https://github.com/traceloop |
-| LinkedIn | https://www.linkedin.com/company/traceloop |
-| Blog | https://www.traceloop.com/blog |
-| Pricing | https://www.traceloop.com/pricing |
-| Status Page | https://status.traceloop.com/ |
-| X (Twitter) | https://twitter.com/traceloopdev |
+- [Traceloop Context](https://apis.io/jsonld/traceloop/traceloop-context/)
 
-## Maintainers
+#### Vocabulary (1)
 
-- Kin Lane (kin@apievangelist.com)
+The provider's domain terms, defined.
+
+- [Traceloop API Vocabulary](https://apis.io/vocabularies/traceloop/traceloop-vocabulary/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Traceloop auto-monitor-setups API](https://apis.io/collections/traceloop/open-traceloop-auto-monitor-setups-api/)
+- [Traceloop auto-monitor-setups evaluators API](https://apis.io/collections/traceloop/open-traceloop-evaluators-api/)
+- [Traceloop auto-monitor-setups metrics API](https://apis.io/collections/traceloop/open-traceloop-metrics-api/)
+- [Traceloop auto-monitor-setups organizations API](https://apis.io/collections/traceloop/open-traceloop-organizations-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Traceloop — jsonschema rules](https://apis.io/rules/traceloop/traceloop-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Traceloop Authentication](https://apis.io/security/traceloop/traceloop-authentication/)
+- [Traceloop Domain Security](https://apis.io/security/traceloop/traceloop-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Traceloop Plans Pricing](https://apis.io/plans/traceloop/traceloop-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Traceloop Rate Limits](https://apis.io/rate-limits/traceloop/traceloop-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Traceloop Finops](https://apis.io/finops/traceloop/traceloop-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.traceloop.com/)
+- [Documentation](https://docs.traceloop.com/)
+- [Pricing](https://www.traceloop.com/pricing)
+- [Blog](https://www.traceloop.com/blog)
+- [Status](https://status.traceloop.com/)
+
+## API Evangelist rating
+
+**Kin Score 37.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 62.5 |
+| Contract governance | 23.5 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 15.8 |
+
+**Agent readiness 24.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/traceloop/](https://apis.io/providers/traceloop/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Traceloop: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/traceloop/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
